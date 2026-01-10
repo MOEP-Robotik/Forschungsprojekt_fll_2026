@@ -2,5 +2,5 @@
 Diese Repository enthält Materialien und Ressourcen für die Forschungspräsentation im Rahmen der First Lego League (FLL) 2026.
 
 ## Inhalt
-- **[website](website/README.md)**: Enthält die Dateien für die Website der Forschungspräsentation.
-- **[ai](ai/README.md)**: Enthält den Quellcode zur KI integration.
+- **[frontend](frontend/)**: Enthält die Dateien für die Website der Forschungspräsentation.
+- **[backend](backend/)**: Enthält den Quellcode für den Server, der die Website unterstützt.
