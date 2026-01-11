@@ -3,4 +3,3 @@ Diese Repository enthält Materialien und Ressourcen für die Forschungspräsent
 
 ## Inhalt
 - **[frontend](frontend/)**: Enthält die Dateien für die Website der Forschungspräsentation.
-- **[backend](backend/)**: Enthält den Quellcode für den Server, der die Website unterstützt.
