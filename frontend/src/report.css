@@ -30,12 +30,15 @@ input, textarea {
     color: var(--textcolor);
     background-color: var(--maincolor);
     cursor:text;
+    outline: none;
+}
 
-    }
+textarea:focus, input:focus {
+    box-shadow: inset 0 0 1px var(--textcolor);
+}
 
 p, strong {
     margin-bottom: 1px;
-    /* margin-top: 20px; */
 }
 
 .position {
