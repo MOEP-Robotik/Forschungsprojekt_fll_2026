@@ -1,0 +1,170 @@
+/* Ich weiß es ist unordentlich */
+:root {
+    --maincolor: rgb(255, 255, 255);
+    --textcolor: rgb(0, 0, 0);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --maincolor: rgb(0, 0, 0);
+    --textcolor: rgb(255, 255, 255);
+  }
+}
+
+body, html {
+    background-color: var(--maincolor);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: var(--textcolor);
+    text-align: center;
+    font-family: Stencil Std, monospace;
+}
+
+.container {
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    z-index: 20;
+    position: relative;
+}
+/* jetzt folgt chaos */
+
+.button {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+
+    border: 5px solid var(--textcolor);
+    background: transparent;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: 5px;
+
+    font-family: Stencil Std, monospace;
+    gap: 3px;
+
+    transition: background-color 500ms ease, transform 500ms ease;
+}
+
+.button:hover {
+    transform: scale(1.2);
+}
+
+.icon {
+    color: var(--textcolor);
+    font-size: 75px;
+}
+
+.text {
+    color: var(--textcolor);
+}
+
+
+
+.button1 {
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+
+    border: 5px solid var(--textcolor);
+    background: transparent;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    font-family: Stencil Std, monospace;
+    gap: 5px;
+
+    transition: transform 0.5s ease;
+}
+
+.button1:hover {
+    transform: scale(1.2);
+}
+
+.icon1 {
+    color: var(--textcolor);
+    font-size: 75px;
+}
+
+.text1 {
+    color: var(--textcolor);
+}
+
+
+
+
+.button2 {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+
+    border: 5px solid var(--textcolor);
+    background: transparent;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: auto;
+
+    font-family: Stencil Std, monospace;
+    gap: 3px;
+
+    transition: background-color 500ms ease, transform 0.5s ease;
+}
+
+.button2:hover {
+    transform: scale(1.2);
+}
+
+.icon2 {
+    color: var(--textcolor);
+    font-size: 75px;
+}
+
+.text2 {
+    color: var(--textcolor);
+}
+
+.gradient {
+    top: 0;
+    left: 0;
+    height: 15%;
+    width: 100%;
+    z-index: 0;
+    position: absolute;
+    background-image: linear-gradient(to bottom, var(--maincolor), rgba(255, 255, 0, 0));
+}
+/*Für die Karte:*/
+
+.map-wrapper {
+    position: absolute;
+    flex-grow: 1;
+    height: 75%;
+    width: 100%;
+    pointer-events: none;
+}
+#map {
+    z-index: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    pointer-events: all;
+    /* border-radius: 15px;
+    border: 5px solid white; */
+}
