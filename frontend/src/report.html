@@ -12,16 +12,16 @@
             <span class="mdi mdi-chevron-left"></span>
         </a>
         <form>
-            <p>ihr Name:</p> <input type="text" placeholder="Max Mustermann" name="name">
-            <p>ihre E-Mail:</p> <input type="email" placeholder="max.mustermann@example.de" name="email">
-            <p>ihre Telefon-Nummer:</p> <input type="tel" placeholder="01234/567890" name="telefon">
-            <p>ihre Addresse:</p> <input type="text" placeholder="Musterstraße 12, 12345 Musterstadt" name="address">
-            <p>Datum des Fundes:</p> <input type="datetime-local" placeholder="12.06.2023" name="Datum des Fundes">
+            <p>Ihr Name:</p> <input type="text" placeholder="Max Mustermann" name="name">
+            <p>Ihre E-Mail:</p> <input type="email" placeholder="max.mustermann@example.de" name="email">
+            <p>Ihre Telefon-Nummer:</p> <input type="tel" placeholder="01234/567890" name="telefon">
+            <p>Ihre Addresse:</p> <input type="text" placeholder="Musterstraße 12, 12345 Musterstadt" name="address">
+            <p>Datum des Fundes:</p> <input type="date" placeholder="12.06.2023" name="Datum des Fundes">
             <p>Beschreibung des/der Fundstücke/s:</p> <textarea id="description" name="description" rows="5" ></textarea></dev>
             <p>Fotos der/des Fundstücke/s:</p> <input type="file" name="image">
             <div class="position"><strong>Position des Fundes:</strong></div>
-            <p>Breitengrad (Latitude):</p> <input type="text" placeholder="51.283889" id="lat-input" name="latitude">
-            <p>Längengrad (Longitude):</p> <input type="text" placeholder="11.520000" id="lng-input" name="longitude">
+            <p>Längengrad (Longitude):</p> <input type="text" placeholder="7.557786" id="lng-input" name="longitude">
+            <p>Breitengrad (Latitude):</p> <input type="text" placeholder="50.949127" id="lat-input" name="latitude">
             <div id="map"></div>
                 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
                 <script>
@@ -31,60 +31,61 @@
                     var currentMarker;
                     var userLocationDot;
 
-                    function updateMarker(lat, lng, updateInputs = false) {
+                    function updateMarker(lon, lat, updateInputs = false) {
                         if (currentMarker) {
-                            currentMarker.setLatLng([lat, lng]);
+                            currentMarker.setLatLng([lat, lon]);
                         } else {
-                            currentMarker = L.marker([lat, lng], {draggable: true}).addTo(map);
+                            currentMarker = L.marker([lat, lon], {draggable: true}).addTo(map);
                             
                             currentMarker.on('dragend', function(event) {
-                                var position = event.target.getLatLng();
-                                updateInputsFromMarker(position.lat, position.lng);
+                                var position = event.target.getLatLon();
+                                updateInputsFromMarker(position.lon, position.lat);
                             });
                         }
 
                         if (updateInputs) {
+                            document.getElementById('lng-input').value = lon.toFixed(6);
                             document.getElementById('lat-input').value = lat.toFixed(6);
-                            document.getElementById('lng-input').value = lng.toFixed(6);
                         }
                     }
 
-                    function updateInputsFromMarker(lat, lng) {
+                    function updateInputsFromMarker(lon, lat) {
+                        document.getElementById('lng-input').value = lon.toFixed(6);
                         document.getElementById('lat-input').value = lat.toFixed(6);
-                        document.getElementById('lng-input').value = lng.toFixed(6);
                     }
 
                     map.on('click', function(e) {
-                        updateMarker(e.latlng.lat, e.latlng.lng, true);
+                        updateMarker(e.latlng.lng, e.latlng.lat,  true);
                     });
 
                     const latInput = document.getElementById('lat-input');
-                    const lngInput = document.getElementById('lng-input');
+                    const lonInput = document.getElementById('lng-input');
 
                     function handleInputChange() {
+                        var lon = parseFloat(lonInput.value);
                         var lat = parseFloat(latInput.value);
-                        var lng = parseFloat(lngInput.value);
 
-                        if (!isNaN(lat) && !isNaN(lng)) {
-                            updateMarker(lat, lng, false);
-                            map.panTo([lat, lng]);
+                        if (!isNaN(lon) && !isNaN(lat)) {
+                            updateMarker(lon, lat, false);
+                            map.panTo([lat, lon]);
                         }
                     }
 
                     latInput.addEventListener('input', handleInputChange);
-                    lngInput.addEventListener('input', handleInputChange);
+                    lonInput.addEventListener('input', handleInputChange);
 
                     map.locate({watch: true});
                     map.on('locationfound', function(e) {
                         if (userLocationDot) {
-                            userLocationDot.setLatLng(e.latlng);
+                            userLocationDot.setLatLng(e.latlon);
                         } else {
-                            userLocationDot = L.circleMarker(e.latlng, {radius: 8, fillColor: "#3388ff", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.8}).addTo(map);
+                            userLocationDot = L.circleMarker(e.latlon, {radius: 8, fillColor: "#3388ff", color: "#fff", weight: 2, opacity: 1, fillOpacity: 0.8}).addTo(map);
                             map.setView(e.latlng, 13);
                         }
                     });
                 
                     // i swear i did'nt used ai
+                    //Reihenfolge von allem irgendwie sinnlos -- egal. Muss jemand anderes machen @ChatGPT Hust Hust Hust
 
             </script>
         </form>
