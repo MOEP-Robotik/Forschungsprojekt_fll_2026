@@ -1,5 +1,10 @@
-# Forschungspräsentation FLL 2026
-Diese Repository enthält Materialien und Ressourcen für die Forschungspräsentation im Rahmen der First Lego League (FLL) 2026.
+# Die Web-App für unsere Forschungspräsentation
 
-## Inhalt
-- **[frontend](frontend/)**: Enthält die Dateien für die Website der Forschungspräsentation.
+## Ausführung der Web-App
+Um die Web-App lokal auszuführen, stelle sicher dass du [pnpm](https://pnpm.io/) installiert hast. Führe dann den folgenden Befehl im Terminal aus:
+
+```bash
+pnpm run dev
+```
+
+Die Web-App wird dann unter [http://localhost:5173](http://localhost:5173) verfügbar sein.
