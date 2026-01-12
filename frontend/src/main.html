@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Überschrift</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <main>
+    <h1>Coole Überschrift </h1>
+
+    <div class="container">
+
+        <a href="finds.html" style="text-decoration: none; color: inherit;">
+            <div class="button">
+                <span class="icon"></span>
+                <span class="text">Meine Funde</span>
+            </div>
+        </a>
+
+        <a href="report.html" style="text-decoration: none; color: inherit;">
+            <div class="button1">
+                <span class="icon1">+</span>
+                <span class="text1">Neue Meldung</span>
+            </div>
+        </a>
+        
+        <a href="info.html" style="text-decoration: none; color: inherit;">
+            <div class="button2">
+                <span class="icon2">i</span>
+                <span class="text2">Info</span>
+            </div>
+        </a>
+    </div>
+    
+    <div class="map-wrapper">
+        <div id="map"></div>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            var map = L.map('map').setView([51.9481, 10.2651], 6); //Einer von den Mittelpunkten von Deutschland, gibt mehrere btw
+                
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+        </script>
+        <div class="gradient"> </div>
+    </div>
+
+</body>
+</html>
