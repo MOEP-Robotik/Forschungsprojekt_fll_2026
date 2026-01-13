@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       currentMarker = L.marker([lat, lon], { draggable: true }).addTo(map);
       
-      currentMarker.on('dragend', function(event) {
+      currentMarker.on('dragend', function(event: L.DragEndEvent) {
         const position = event.target.getLatLng();
         updateInputsFromMarker(position.lng, position.lat);
       });
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  map.on('click', function(e) {
+  map.on('click', function(e: L.LeafletMouseEvent) {
     updateMarker(e.latlng.lng, e.latlng.lat, true);
   });
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   map.locate({ watch: true });
-  map.on('locationfound', function(e) {
+  map.on('locationfound', function(e: L.LocationEvent) {
     if (userLocationDot) {
       userLocationDot.setLatLng(e.latlng);
     } else {
