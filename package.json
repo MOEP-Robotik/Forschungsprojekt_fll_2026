@@ -10,15 +10,11 @@
   },
   "devDependencies": {
     "typescript": "~5.9.3",
-    "vite": "npm:rolldown-vite@7.2.5"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "npm:rolldown-vite@7.2.5"
-    }
+    "vite": "^5.4.0",
+    "@types/node": "^20.0.0"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "leaflet": "^1.9.4",
+    "@mdi/font": "^7.4.47"
   }
 }

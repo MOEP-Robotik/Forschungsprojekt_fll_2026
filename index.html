@@ -1,13 +1,43 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Überschrift</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>forschungsprojekt-fll-2026</title>
-  </head>
-  <body>
-    <div id="app"></div>
+</head>
+<body>
+    <main>
+    <h1>Coole Überschrift </h1>
+
+    <div class="container">
+
+        <a href="src/finds.html" style="text-decoration: none; color: inherit;">
+            <div class="button">
+                <span class="icon"></span>
+                <span class="text">Meine Funde</span>
+            </div>
+        </a>
+
+        <a href="src/report.html" style="text-decoration: none; color: inherit;">
+            <div class="button1">
+                <span class="icon1">+</span>
+                <span class="text1">Neue Meldung</span>
+            </div>
+        </a>
+        
+        <a href="src/info.html" style="text-decoration: none; color: inherit;">
+            <div class="button2">
+                <span class="icon2">i</span>
+                <span class="text2">Info</span>
+            </div>
+        </a>
+    </div>
+    
+    <div class="map-wrapper">
+        <div id="map"></div>
+        <div class="gradient"> </div>
+    </div>
+    </main>
     <script type="module" src="/src/main.ts"></script>
-  </body>
+</body>
 </html>
