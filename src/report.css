@@ -17,7 +17,7 @@ body {
     margin: 2%;
 }
 
-input, textarea {
+input, textarea, button {
     width: 100%;
     padding-top: 0;
     padding: 1%; 
