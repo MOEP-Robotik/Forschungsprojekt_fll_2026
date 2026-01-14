@@ -80,4 +80,71 @@ document.addEventListener('DOMContentLoaded', () => {
       map.setView(e.latlng, 13);
     }
   });
+
+  const form = document.getElementById('report-form');
+  if (form) {
+    form.addEventListener('submit', sendReport);
+  }
 });
+
+async function sendReport(event: Event) {
+  event.preventDefault();
+
+  // brauchen noch mehr, muss aber noch auf dem backend implementiert werden
+  const nameInput = document.getElementById('name') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const descriptionInput = document.getElementById('description') as HTMLTextAreaElement;
+  const lonInput = document.getElementById('lng-input') as HTMLInputElement;
+  const latInput = document.getElementById('lat-input') as HTMLInputElement;
+
+  if (!nameInput?.value || !emailInput?.value || !descriptionInput?.value || !lonInput?.value || !latInput?.value) {
+    alert('Bitte alle Pflichtfelder ausfüllen (Name, E-Mail, Beschreibung, Koordinaten)');
+    return;
+  }
+
+  const lon = parseFloat(lonInput.value);
+  const lat = parseFloat(latInput.value);
+
+  if (isNaN(lon) || isNaN(lat)) {
+    alert('Bitte gültige Koordinaten eingeben');
+    return;
+  }
+
+  // limitieren des Titels auf 100 Zeichen und der Beschreibung auf 1000 Zeichen
+  const reportData = {
+    title: nameInput.value.substring(0, 100) || 'Fundstück',
+    description: descriptionInput.value.substring(0, 1000),
+    coordinate: {
+      lon: lon,
+      lat: lat
+    },
+    email: emailInput.value
+  };
+
+  try {
+    const response = await fetch('http://localhost:8000/api/submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+      },
+      body: JSON.stringify(reportData)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Report sent successfully:', result);
+    
+    const form = document.getElementById('report-form') as HTMLFormElement;
+    if (form) {
+      //form.reset();
+    }
+  } catch (error) {
+    console.error('Error sending report:', error);
+    alert(`Fehler beim Senden der Meldung: ${error instanceof Error ? error.message : 'Unbekannter Fehler'}`);
+  }
+}
