@@ -14,8 +14,29 @@
             <p>Ihre E-Mail:</p> <input type="email" placeholder="max.mustermann@example.de" name="email">
             <p>Ihre Telefon-Nummer:</p> <input type="tel" placeholder="01234/567890" name="telefon">
             <p>Ihre Addresse:</p> <input type="text" placeholder="Musterstraße 12, 12345 Musterstadt" name="address">
-            <p>Datum des Fundes:</p> <input type="date" placeholder="12.06.2023" name="Datum des Fundes">
-            <p>Beschreibung des/der Fundstücke/s:</p> <textarea id="description" name="description" rows="5" ></textarea>
+            <p>Funddatum :</p> <input type="date" placeholder="12.06.2023" name="Datum des Fundes">
+            <p>Fundumstand:</p> <textarea id="description" name="" rows="1" ></textarea>
+            <label for="material">Am besten passendes Material::</label>
+                <select name="material" id="material">
+                    <option value="stein">Stein</option>
+                    <option value="keramik">Keramik</option>
+                    <option value="metall">Metall</option>
+                    <option value="holz">Holz</option>
+                    <option value="glas">Glas</option>
+
+                    <option value="textil">Textil</option>
+                    <option value="">Leder</option>
+                    
+                    <option value="knochen">Knochen</option>
+                    <option value="geweih">Geweih</option>                  
+                </select>
+            
+            <div class="dimensions"><strong>Maße des Fundes:</strong></div>
+            <p>Länge:</p> <input type="number" placeholder="25cm" name="lenght">
+            <p>Breite:</p> <input type="number" placeholder="12,5cm" name="widht">
+            <p>Höhe:</p> <input type="number" placeholder="6,25cm" name="hight">
+            <p>Gewicht:</p> <input type="number" placeholder="50kg" name="weight">
+            
             <p>Fotos der/des Fundstücke/s:</p> <input type="file" name="image">
             <div class="position"><strong>Position des Fundes:</strong></div>
             <p>Längengrad (Longitude):</p> <input type="text" placeholder="7.557786" id="lng-input" name="longitude">
