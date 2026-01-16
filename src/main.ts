@@ -11,4 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
   }
+
+  const loginElement = document.getElementById("login-container") as HTMLDivElement;
+  const loggedIn = localStorage.getItem("jwt_token") !== "";
+  
+  if (loggedIn) {
+    // TODO: Add logic for logging out
+    loginElement.innerHTML = `
+      <button type="button" class="login-button">
+        Log out
+      </button>
+    `;
+  } else {
+    loginElement.innerHTML = `
+      <a href="src/login.html" style="text-decoration:none;">
+        <button type="button" class="login-button">
+          Log in
+        </button>
+      </a>
+    `;
+  }
+
 });
