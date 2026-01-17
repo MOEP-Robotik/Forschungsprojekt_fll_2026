@@ -98,16 +98,13 @@ async function sendReport(event: Event) {
   event.preventDefault();
 
   const nameInput = document.getElementById('name') as HTMLInputElement;
-  const emailInput = document.getElementById('email') as HTMLInputElement;
-  const telephoneInput = document.getElementById('telephone') as HTMLInputElement;
-  const addressInput = document.getElementById('address') as HTMLInputElement;
   const dateInput = document.getElementById('date') as HTMLInputElement;
   const descriptionInput = document.getElementById('description') as HTMLTextAreaElement;
   const lonInput = document.getElementById('lng-input') as HTMLInputElement;
   const latInput = document.getElementById('lat-input') as HTMLInputElement;
 
-  if (!nameInput?.value || !emailInput?.value || !descriptionInput?.value || !lonInput?.value || !latInput?.value) {
-    alert('Bitte alle Pflichtfelder ausfüllen (Name, E-Mail, Beschreibung, Koordinaten)');
+  if (!nameInput?.value || !descriptionInput?.value || !lonInput?.value || !latInput?.value) {
+    alert('Bitte alle Pflichtfelder ausfüllen (Name, Beschreibung, Koordinaten)');
     return;
   }
 
@@ -127,9 +124,6 @@ async function sendReport(event: Event) {
       lon: lon,
       lat: lat
     },
-    email: emailInput.value,
-    telephone: telephoneInput.value.substring(0, 20),
-    address: addressInput.value,
     date: dateInput.value,
     jwt_token: localStorage.getItem("jwt_token") ?? ""
   };

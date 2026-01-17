@@ -199,7 +199,7 @@ export async function register(
   }
 }
 
-interface userinfo{
+export interface UserInfo {
   vorname: string;
   nachname: string;
   plz: number;
@@ -208,7 +208,7 @@ interface userinfo{
   funde: Array<number>;
 }
 
-export async function getAccountInfo(): Promise<userinfo | false>  {
+export async function getAccountInfo(): Promise<UserInfo | false>  {
   const jwt_token = localStorage.getItem("jwt_token");
   try {
     const res = await fetch(`${getApiEndpoint()}/api/auth/userinfo`, {
@@ -220,7 +220,7 @@ export async function getAccountInfo(): Promise<userinfo | false>  {
     });
 
     const data = await res.json();
-    let userInfo: userinfo = {
+    let userInfo: UserInfo = {
       vorname: data.data.vorname || "",
       nachname: data.data.nachname || "",
       plz: data.data.plz || 0,
