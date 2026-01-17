@@ -1,1 +1,3 @@
-export const API_ENDPOINT: string = "http://localhost:8000";
+export default function getApiEndpoint(): string {
+    return localStorage.getItem("api_endpoint") ?? "http://moepserver:8000";
+}

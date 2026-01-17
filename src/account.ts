@@ -1,7 +1,7 @@
 import './account.css'
 import './report.css'
 import '@mdi/font/css/materialdesignicons.min.css';
-import { API_ENDPOINT } from './settings.ts';
+import getApiEndpoint from './settings.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
   const isLoggedIn = localStorage.getItem("jwt_token") !== "";
@@ -78,7 +78,7 @@ async function sendLogin(event: Event) {
 
 export async function login(email: string, password: string): Promise<[boolean, string]> {
   try {
-    const res = await fetch(`${API_ENDPOINT}/api/auth/login`, {
+    const res = await fetch(`${getApiEndpoint()}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ "email": email, "password": password }),
@@ -155,7 +155,7 @@ export async function register(
   funde: number[] = []
 ) {
   try {
-    const res = await fetch(`${API_ENDPOINT}/api/auth/register`, {
+    const res = await fetch(`${getApiEndpoint()}/api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
