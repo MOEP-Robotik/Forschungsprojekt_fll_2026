@@ -79,6 +79,7 @@ async function sendLogin(event: Event) {
     const success = await login(emailInput.value, passwordInput.value);
     if (success[0]) {
       console.log("Login successful!");
+      window.location.reload();
       return;
     }
     console.log(success)
@@ -148,6 +149,7 @@ async function sendRegister(event: Event) {
     );
     if (success[0]) {
       console.log("Registration successful!");
+      window.location.reload();
       return;
     }
     console.log(success);
