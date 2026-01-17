@@ -3,11 +3,11 @@ import './report.css'
 import '@mdi/font/css/materialdesignicons.min.css';
 import getApiEndpoint from './settings.ts';
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log(localStorage.getItem("jwt_token"))
-  const isLoggedIn = !!localStorage.getItem("jwt_token");
+document.addEventListener('DOMContentLoaded', async () => {
+  const isLoggedIn = true; //!!localStorage.getItem("jwt_token")
   const loginForm = document.getElementById('login-form');
-  if (loginForm) {
+  const accountWrapper = document.getElementById("account-wrapper");
+  if (loginForm && accountWrapper) {
     loginForm.addEventListener('submit', sendLogin);
     if (!isLoggedIn) {
       loginForm.innerHTML = `
@@ -16,6 +16,18 @@ document.addEventListener('DOMContentLoaded', () => {
         <br/>
         <button type="submit">Einloggen</button>
       `;
+    } else {
+      let accountInfo = await getAccountInfo();
+      if (accountInfo !== false){
+        accountWrapper.innerHTML = `
+          <p>Ihr Name: ${accountInfo.vorname + accountInfo.nachname}</p>
+          <p>Ihre E-Mail: ${accountInfo.email}</p>
+          <p>Ihre Postleitzahl: ${accountInfo.plz}</p>
+          <p>Ihre Telefonnummer: ${accountInfo.telefonnummer}</p>
+        `;
+      } else {
+        alert("Es trat leider ein Problem auf. Bitte versuchen Sie es später erneut :(")
+      }
     }
   }
   const splitter = document.getElementById("login-register-split");
@@ -184,5 +196,47 @@ export async function register(
     localStorage.setItem("jwt_token", "");
     console.error('Fetch error during registration:', err);
     return [false, ""];
+  }
+}
+
+interface userinfo{
+  vorname: string;
+  nachname: string;
+  plz: number;
+  email: string;
+  telefonnummer: string;
+  funde: Array<number>;
+}
+
+export async function getAccountInfo(): Promise<userinfo | false>  {
+  const jwt_token = localStorage.getItem("jwt_token");
+  try {
+    const res = await fetch(`${getApiEndpoint()}/api/auth/userinfo`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        jwt_token
+      }),
+    });
+
+    const data = await res.json();
+    let userInfo: userinfo = {
+      vorname: data.vorname || "",
+      nachname: data.nachname || "",
+      plz: data.plz || 0,
+      email: data.email || "",
+      telefonnummer: data.telefonnummer || "",
+      funde: data.funde || []
+    };
+    if (data.success) {
+      
+      return userInfo;
+    } else {
+      console.warn("getAccountInfo Problem: ", data);
+      return false;
+    }
+  } catch (err) {
+    console.error('Fetch error during getAccountInfo:', err);
+    return false;
   }
 }
