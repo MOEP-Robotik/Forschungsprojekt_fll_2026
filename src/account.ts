@@ -1,6 +1,7 @@
 import './account.css'
 import './report.css'
 import '@mdi/font/css/materialdesignicons.min.css';
+import { API_ENDPOINT } from './settings.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
   const isLoggedIn = localStorage.getItem("jwt_token") !== "";
@@ -16,13 +17,33 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
   }
+  const splitter = document.getElementById("login-register-split");
+  if (splitter && isLoggedIn) {
+    splitter.style.display = "none";
+  }
   const registerForm = document.getElementById('register-form');
   if (registerForm) {
-    registerForm.addEventListener('submit', sendLogin);
+    registerForm.addEventListener('submit', sendRegister);
     if (!isLoggedIn) {
       registerForm.innerHTML = `
-        <p>Ihre E-Mail: <span style="color:red;">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
-        <p>Passwort: <span style="color:red;">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+        <p>Vorname: <span style="color:red;">*</span></p> 
+        <input type="text" placeholder="Max" id="vorname" name="vorname" required />
+
+        <p>Nachname: <span style="color:red;">*</span></p> 
+        <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
+
+        <p>Ihre E-Mail: <span style="color:red;">*</span></p> 
+        <input type="email" placeholder="max.mustermann@example.de" id="register-email" name="email" required />
+
+        <p>Passwort: <span style="color:red;">*</span></p> 
+        <input type="password" placeholder="********" id="register-password" name="password" required />
+
+        <p>PLZ: <span style="color:red;">*</span></p> 
+        <input type="text" placeholder="12345" id="plz" name="plz" required />
+
+        <p>Telefonnummer: <span style="color:red;">*</span></p> 
+        <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
+
         <br/>
         <button type="submit">Registrieren</button>
       `;
@@ -55,10 +76,9 @@ async function sendLogin(event: Event) {
   }
 }
 
-
-export default async function login(email: string, password: string): Promise<[boolean, string]> {
+export async function login(email: string, password: string): Promise<[boolean, string]> {
   try {
-    const res = await fetch("http://localhost:8000/api/auth/login", {
+    const res = await fetch(`${API_ENDPOINT}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ "email": email, "password": password }),
@@ -72,11 +92,96 @@ export default async function login(email: string, password: string): Promise<[b
     } else {
       localStorage.setItem("jwt_token", "");
       console.log("Login unsuccessful: ", data);
-      return [false, data.data.message];
+      return [false, data.data?.message || "Unbekannter Fehler"];
     }
   } catch (err) {
     localStorage.setItem("jwt_token", "");
     console.error('Fetch error:', err);
+    return [false, ""];
+  }
+}
+
+async function sendRegister(event: Event) {
+  event.preventDefault();
+
+  const vornameInput = document.getElementById('vorname') as HTMLInputElement | null;
+  const nachnameInput = document.getElementById('nachname') as HTMLInputElement | null;
+  const passwordInput = document.getElementById('register-password') as HTMLInputElement | null;
+  const plzInput = document.getElementById('plz') as HTMLInputElement | null;
+  const emailInput = document.getElementById('register-email') as HTMLInputElement | null;
+  const telefonnummerInput = document.getElementById('telefonnummer') as HTMLInputElement | null;
+
+  if (
+    !vornameInput?.value ||
+    !nachnameInput?.value ||
+    !emailInput?.value ||
+    !passwordInput?.value ||
+    !plzInput?.value ||
+    !telefonnummerInput?.value
+  ) {
+    alert('Bitte alle Pflichtfelder ausfüllen (Vorname, Nachname, E-Mail, Passwort, PLZ)');
+    return;
+  }
+
+  try {
+    const success = await register(
+      vornameInput.value,
+      nachnameInput.value,
+      passwordInput.value,
+      plzInput.value,
+      emailInput.value,
+      telefonnummerInput?.value || "",
+      []
+    );
+    if (success[0]) {
+      console.log("Registration successful!");
+      return;
+    }
+    console.log(success);
+    throw new Error(success[1]);
+  } catch (error) {
+    console.error('Error sending registration:', error);
+    alert(`Fehler bei der Registrierung: ${error instanceof Error ? error.message : 'Unbekannter Fehler'}`);
+  }
+}
+
+export async function register(
+  vorname: string,
+  nachname: string,
+  password: string,
+  plz: string,
+  email: string,
+  telefonnummer: string,
+  funde: number[] = []
+) {
+  try {
+    const res = await fetch(`${API_ENDPOINT}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        vorname,
+        nachname,
+        password,
+        plz,
+        email,
+        telefonnummer,
+        funde
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      localStorage.setItem("jwt_token", data.jwt_token);
+      return [true, ""];
+    } else {
+      localStorage.setItem("jwt_token", "");
+      console.log("Registration unsuccessful: ", data);
+      return [false, data.data?.message || "Unbekannter Fehler"];
+    }
+  } catch (err) {
+    localStorage.setItem("jwt_token", "");
+    console.error('Fetch error during registration:', err);
     return [false, ""];
   }
 }
