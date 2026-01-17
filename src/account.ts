@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       let accountInfo = await getAccountInfo();
       if (accountInfo !== false){
         accountWrapper.innerHTML = `
-          <p>Ihr Name: ${accountInfo.vorname + accountInfo.nachname}</p>
+          <p>Ihr Name: ${accountInfo.vorname + " " + accountInfo.nachname}</p>
           <p>Ihre E-Mail: ${accountInfo.email}</p>
           <p>Ihre Postleitzahl: ${accountInfo.plz}</p>
           <p>Ihre Telefonnummer: ${accountInfo.telefonnummer}</p>
@@ -221,15 +221,14 @@ export async function getAccountInfo(): Promise<userinfo | false>  {
 
     const data = await res.json();
     let userInfo: userinfo = {
-      vorname: data.vorname || "",
-      nachname: data.nachname || "",
-      plz: data.plz || 0,
-      email: data.email || "",
-      telefonnummer: data.telefonnummer || "",
-      funde: data.funde || []
+      vorname: data.data.vorname || "",
+      nachname: data.data.nachname || "",
+      plz: data.data.plz || 0,
+      email: data.data.email || "",
+      telefonnummer: data.data.telefonnummer || "",
+      funde: data.data.funde || []
     };
     if (data.success) {
-      
       return userInfo;
     } else {
       console.warn("getAccountInfo Problem: ", data);
