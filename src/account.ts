@@ -4,7 +4,7 @@ import '@mdi/font/css/materialdesignicons.min.css';
 import getApiEndpoint from './settings.ts';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const isLoggedIn = true; //!!localStorage.getItem("jwt_token")
+  const isLoggedIn = !!localStorage.getItem("jwt_token");
   const loginForm = document.getElementById('login-form');
   const accountWrapper = document.getElementById("account-wrapper");
   if (loginForm && accountWrapper) {
