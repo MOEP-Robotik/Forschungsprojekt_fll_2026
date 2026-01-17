@@ -2,6 +2,7 @@ import './report.css';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '@mdi/font/css/materialdesignicons.min.css';
+import getApiEndpoint from './settings';
 
 document.addEventListener('DOMContentLoaded', () => {
   const mapElement = document.getElementById('map');
@@ -81,8 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const isLoggedIn = !!localStorage.getItem("jwt_token");
   const form = document.getElementById('report-form');
   if (form) {
+    if (!isLoggedIn) {
+      form.innerHTML = `
+        <h1>Du musst eingeloggt sein, um einen Fund abzusenden!</h1>
+      `;
+    }
     form.addEventListener('submit', sendReport);
   }
 });
@@ -91,16 +98,13 @@ async function sendReport(event: Event) {
   event.preventDefault();
 
   const nameInput = document.getElementById('name') as HTMLInputElement;
-  const emailInput = document.getElementById('email') as HTMLInputElement;
-  const telephoneInput = document.getElementById('telephone') as HTMLInputElement;
-  const addressInput = document.getElementById('address') as HTMLInputElement;
   const dateInput = document.getElementById('date') as HTMLInputElement;
   const descriptionInput = document.getElementById('description') as HTMLTextAreaElement;
   const lonInput = document.getElementById('lng-input') as HTMLInputElement;
   const latInput = document.getElementById('lat-input') as HTMLInputElement;
 
-  if (!nameInput?.value || !emailInput?.value || !descriptionInput?.value || !lonInput?.value || !latInput?.value) {
-    alert('Bitte alle Pflichtfelder ausfüllen (Name, E-Mail, Beschreibung, Koordinaten)');
+  if (!nameInput?.value || !descriptionInput?.value || !lonInput?.value || !latInput?.value) {
+    alert('Bitte alle Pflichtfelder ausfüllen (Name, Beschreibung, Koordinaten)');
     return;
   }
 
@@ -120,18 +124,15 @@ async function sendReport(event: Event) {
       lon: lon,
       lat: lat
     },
-    email: emailInput.value,
-    telephone: telephoneInput.value.substring(0, 20),
-    address: addressInput.value,
     date: dateInput.value,
+    jwt_token: localStorage.getItem("jwt_token") ?? ""
   };
 
   try {
-    const response = await fetch('http://localhost:8000/api/submissions', {
+    const response = await fetch(`${getApiEndpoint()}/api/submissions`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(reportData)
     });
