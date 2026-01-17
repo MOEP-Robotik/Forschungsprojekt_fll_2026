@@ -87,7 +87,7 @@ export async function login(email: string, password: string): Promise<[boolean, 
     const data = await res.json();
 
     if (data.success) {
-      localStorage.setItem("jwt_token", data.jwt_token);
+      localStorage.setItem("jwt_token", data.data.jwt_token);
       return [true, ""];
     } else {
       localStorage.setItem("jwt_token", "");
@@ -172,7 +172,7 @@ export async function register(
     const data = await res.json();
 
     if (data.success) {
-      localStorage.setItem("jwt_token", data.jwt_token);
+      localStorage.setItem("jwt_token", data.data.jwt_token);
       return [true, ""];
     } else {
       localStorage.setItem("jwt_token", "");
