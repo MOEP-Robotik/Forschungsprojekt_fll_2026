@@ -1,10 +1,32 @@
+import './account.css'
 import './report.css'
 import '@mdi/font/css/materialdesignicons.min.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('login-form');
-  if (form) {
-    form.addEventListener('submit', sendLogin);
+  const isLoggedIn = localStorage.getItem("jwt_token") !== "";
+  const loginForm = document.getElementById('login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', sendLogin);
+    if (!isLoggedIn) {
+      loginForm.innerHTML = `
+        <p>Ihre E-Mail: <span style="color:red;">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+        <p>Passwort: <span style="color:red;">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+        <br/>
+        <button type="submit">Einloggen</button>
+      `;
+    }
+  }
+  const registerForm = document.getElementById('register-form');
+  if (registerForm) {
+    registerForm.addEventListener('submit', sendLogin);
+    if (!isLoggedIn) {
+      registerForm.innerHTML = `
+        <p>Ihre E-Mail: <span style="color:red;">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+        <p>Passwort: <span style="color:red;">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+        <br/>
+        <button type="submit">Registrieren</button>
+      `;
+    }
   }
 });
 
