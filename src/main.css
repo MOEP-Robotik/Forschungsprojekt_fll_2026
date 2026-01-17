@@ -70,8 +70,6 @@ h1 {
     color: var(--textcolor);
 }
 
-
-
 .button1 {
     width: 130px;
     height: 130px;
@@ -104,9 +102,6 @@ h1 {
 .text1 {
     color: var(--textcolor);
 }
-
-
-
 
 .button2 {
     width: 110px;
@@ -167,4 +162,29 @@ h1 {
     pointer-events: all;
     /* border-radius: 15px;
     border: 5px solid white; */
+}
+
+.login-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: flex-end;
+    margin: 1rem;
+}
+
+.login-button {
+    padding: 8px 16px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid var(--textcolor);
+    background: var(--maincolor);
+    color: var(--textcolor);
+    cursor: pointer;
+
+    transition: background-color 500ms ease, transform 500ms ease;
+}
+
+.login-button:hover {
+    transform: scale(1.15);
 }
