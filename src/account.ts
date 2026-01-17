@@ -4,7 +4,8 @@ import '@mdi/font/css/materialdesignicons.min.css';
 import getApiEndpoint from './settings.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const isLoggedIn = localStorage.getItem("jwt_token") !== "";
+  console.log(localStorage.getItem("jwt_token"))
+  const isLoggedIn = !!localStorage.getItem("jwt_token");
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
     loginForm.addEventListener('submit', sendLogin);
