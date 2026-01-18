@@ -54,3 +54,7 @@ p, strong {
     border: 1px solid var(--textcolor); 
     border-radius: 5px;
 }
+
+button{
+    cursor: pointer !important;
+}
