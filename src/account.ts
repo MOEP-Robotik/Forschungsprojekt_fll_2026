@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const isLoggedIn = !!localStorage.getItem("jwt_token");
   const loginForm = document.getElementById('login-form');
   const accountWrapper = document.getElementById("account-wrapper");
+  const accountForms = document.getElementById("account-forms");
   if (loginForm && accountWrapper) {
     loginForm.addEventListener('submit', sendLogin);
     if (!isLoggedIn) {
+      accountForms!.style.display = "block";
       loginForm.innerHTML = `
         <p>Ihre E-Mail: <span style="color:red;">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
         <p>Passwort: <span style="color:red;">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (registerForm) {
     registerForm.addEventListener('submit', sendRegister);
     if (!isLoggedIn) {
+      accountForms!.style.display = "block";
       registerForm.innerHTML = `
         <p>Vorname: <span style="color:red;">*</span></p> 
         <input type="text" placeholder="Max" id="vorname" name="vorname" required />
@@ -234,6 +237,11 @@ export async function getAccountInfo(): Promise<UserInfo | false>  {
       return userInfo;
     } else {
       console.warn("getAccountInfo Problem: ", data);
+      if (res.status === 401) {
+        console.warn("jwt expired!");
+        localStorage.setItem("jwt_token", "");
+        window.location.reload();
+      }
       return false;
     }
   } catch (err) {
