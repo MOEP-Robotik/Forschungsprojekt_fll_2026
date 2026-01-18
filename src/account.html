@@ -1,31 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <title>Account</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body>
-    <a href="/" style="text-decoration: none; color: inherit;">
-        <span class="mdi mdi-chevron-left"></span>
-    </a>
-    <div class="center">
-        <h1>Account</h1>
-    </div>
-    <hr/>
-    <div id="account-wrapper">
-        <div id="account-forms" style="display: none;">
-            <form id="login-form"></form>
-            <div class="center" id="login-register-split">
-                <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 16px">
-                <div style="margin-top: 4px;">
-                    <span>oder</span>
-                </div>
-                <hr style="width: 100%; border: none; border-top: 1px solid #ccc; margin: 16px">
-            </div>
-            <form id="register-form"></form>
+    <head>
+        <title>Account</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <a href="/" style="text-decoration: none; color: inherit">
+            <span class="mdi mdi-chevron-left"></span>
+        </a>
+        <div class="center">
+            <h1>Account</h1>
         </div>
-    </div>
-    <script type="module" src="/src/account.ts"></script>
-</body>
+        <hr />
+        <div id="account-wrapper">
+            <div id="account-forms" style="display: none">
+                <form id="login-form"></form>
+                <div class="center" id="login-register-split">
+                    <hr
+                        style="
+                            width: 100%;
+                            border: none;
+                            border-top: 1px solid #ccc;
+                            margin: 16px;
+                        "
+                    />
+                    <div style="margin-top: 4px">
+                        <span>oder</span>
+                    </div>
+                    <hr
+                        style="
+                            width: 100%;
+                            border: none;
+                            border-top: 1px solid #ccc;
+                            margin: 16px;
+                        "
+                    />
+                </div>
+                <form id="register-form"></form>
+            </div>
+        </div>
+        <script type="module" src="/src/account.ts"></script>
+    </body>
 </html>

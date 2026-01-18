@@ -3,24 +3,28 @@
     --textcolor: rgb(0, 0, 0);
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-    --maincolor: rgb(0, 0, 0);
-    --textcolor: rgb(255, 255, 255);
-  }
+    :root {
+        --maincolor: rgb(0, 0, 0);
+        --textcolor: rgb(255, 255, 255);
+    }
 }
 
 body {
     background-color: var(--maincolor);
     color: var(--textcolor);
-    font-family: Stencil Std, monospace;
+    font-family:
+        Stencil Std,
+        monospace;
     height: 100%;
     margin: 2%;
 }
 
-input, textarea, button {
+input,
+textarea,
+button {
     width: 100%;
     padding-top: 0;
-    padding: 1%; 
+    padding: 1%;
     box-sizing: border-box;
     border: 1px solid var(--textcolor);
     border-radius: 5px;
@@ -29,15 +33,17 @@ input, textarea, button {
     opacity: 1;
     color: var(--textcolor);
     background-color: var(--maincolor);
-    cursor:text;
+    cursor: text;
     outline: none;
 }
 
-textarea:focus, input:focus {
+textarea:focus,
+input:focus {
     box-shadow: inset 0 0 1px var(--textcolor);
 }
 
-p, strong {
+p,
+strong {
     margin-bottom: 1px;
 }
 
@@ -51,7 +57,7 @@ p, strong {
     margin-top: 20px;
     height: 400px;
     width: 100%;
-    border: 1px solid var(--textcolor); 
+    border: 1px solid var(--textcolor);
     border-radius: 5px;
 }
 

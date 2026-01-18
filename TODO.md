@@ -1,15 +1,19 @@
 # TODO Liste
+
 ## Funktionalitäten
+
 - [x] Benutzerregistrierung
 - [ ] Gastbenutzerzugang
 - [ ] Zustellung an LVR
 - [ ] KI Integration
 
 ## Frontend
+
 - [x] Login Seite
 - [ ] Dashboard Seite
 
 ## Backend
+
 - [ ] API-Endpunkte dokumentieren
 - [x] Datenbankmodellierung
 - [x] Authentifizierungslogik implementieren

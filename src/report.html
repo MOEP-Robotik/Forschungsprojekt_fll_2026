@@ -1,26 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
     <head>
         <title>neue Meldung</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <a href="/" style="text-decoration: none; color: inherit;">
+        <a href="/" style="text-decoration: none; color: inherit">
             <span class="mdi mdi-chevron-left"></span>
         </a>
         <form id="report-form">
-            <p>Name des Fundes: <span style="color:red;">*</span></p> <input type="text" placeholder="Stein" id="name" name="name" maxlength="100" required>
-            <p>Datum des Fundes:</p> <input type="date" placeholder="12.06.2023" id="date" name="Datum des Fundes">
-            <p>Beschreibung des/der Fundstücke/s: <span style="color:red;">*</span></p> <textarea id="description" name="description" rows="5" maxlength="1000" required></textarea>
-            <p>Fotos der/des Fundstücke/s:</p> <input type="file" id="image" name="image">
+            <p>Name des Fundes: <span style="color: red">*</span></p>
+            <input
+                type="text"
+                placeholder="Stein"
+                id="name"
+                name="name"
+                maxlength="100"
+                required
+            />
+            <p>Datum des Fundes:</p>
+            <input
+                type="date"
+                placeholder="12.06.2023"
+                id="date"
+                name="Datum des Fundes"
+            />
+            <p>
+                Beschreibung des/der Fundstücke/s:
+                <span style="color: red">*</span>
+            </p>
+            <textarea
+                id="description"
+                name="description"
+                rows="5"
+                maxlength="1000"
+                required
+            ></textarea>
+            <p>Fotos der/des Fundstücke/s:</p>
+            <input type="file" id="image" name="image" />
             <div class="position">
                 <strong>Position des Fundes:</strong>
-                <p>Längengrad (Longitude): <span style="color:red;">*</span></p> <input type="text" placeholder="7.557786" id="lng-input" name="longitude" required>
-                <p>Breitengrad (Latitude): <span style="color:red;">*</span></p> <input type="text" placeholder="50.9495" id="lat-input" name="latitude" required>
+                <p>Längengrad (Longitude): <span style="color: red">*</span></p>
+                <input
+                    type="text"
+                    placeholder="7.557786"
+                    id="lng-input"
+                    name="longitude"
+                    required
+                />
+                <p>Breitengrad (Latitude): <span style="color: red">*</span></p>
+                <input
+                    type="text"
+                    placeholder="50.9495"
+                    id="lat-input"
+                    name="latitude"
+                    required
+                />
             </div>
             <div id="map"></div>
-            <br/>
+            <br />
             <button type="submit">Senden</button>
         </form>
         <script type="module" src="/src/report.ts"></script>

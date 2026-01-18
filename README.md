@@ -1,6 +1,7 @@
 # Die Web-App für unsere Forschungspräsentation
 
 ## Ausführung der Web-App
+
 Um die Web-App lokal auszuführen, stelle sicher dass du [pnpm](https://pnpm.io/) installiert hast. Führe dann den folgenden Befehl im Terminal aus:
 
 ```bash
