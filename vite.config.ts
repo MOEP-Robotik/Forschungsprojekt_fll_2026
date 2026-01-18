@@ -9,6 +9,7 @@ export default defineConfig({
         finds: resolve(__dirname, 'src/finds.html'),
         report: resolve(__dirname, 'src/report.html'),
         info: resolve(__dirname, 'src/info.html'),
+        account: resolve(__dirname, 'src/account.html')
       },
     },
   },
