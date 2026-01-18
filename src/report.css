@@ -41,7 +41,7 @@ p, strong {
     margin-bottom: 1px;
 }
 
-.position {
+.position, .material {
     display: block;
     margin-top: 20px;
     margin-bottom: 0px;
