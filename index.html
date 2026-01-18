@@ -7,10 +7,22 @@
 </head>
 <body>
     <main>
-    <h1>Coole Überschrift </h1>
+    <div style="display: flex; flex-direction: column; align-items: stretch; margin-bottom: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <!-- leeres div um links aufzufüllen -->
+        <div style="flex:1"></div>
+        <h1 style="margin: 0; flex: 1; text-align: center;">Coole Überschrift</h1>
+        <div id="login-container" class="login-container">
+            <a href="src/account.html" style="text-decoration:none;">
+                <button type="button" class="login-button">
+                    Account
+                </button>
+            </a>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
-
         <a href="src/finds.html" style="text-decoration: none; color: inherit;">
             <div class="button">
                 <span class="icon"></span>
