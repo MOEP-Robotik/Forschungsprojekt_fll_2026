@@ -9,7 +9,7 @@
         <a href="/" style="text-decoration: none; color: inherit;">
             <span class="mdi mdi-chevron-left"></span>
         </a>
-        <form>
+        <form id="report-form">
             <p>Ihr Name:</p> <input type="text" placeholder="Max Mustermann" name="name">
             <p>Ihre E-Mail:</p> <input type="email" placeholder="max.mustermann@example.de" name="email">
             <p>Ihre Telefon-Nummer:</p> <input type="tel" placeholder="01234/567890" name="telefon">
@@ -42,7 +42,6 @@
             <div class="position"><strong>Position des Fundes:</strong></div>
             <p>Längengrad (Longitude):</p> <input type="text" placeholder="7.557786" id="lng-input" name="longitude">
             <p>Breitengrad (Latitude):</p> <input type="text" placeholder="50.9495" id="lat-input" name="latitude">
-        <form id="report-form">
             <p>Name des Fundes: <span style="color:red;">*</span></p> <input type="text" placeholder="Stein" id="name" name="name" maxlength="100" required>
             <p>Datum des Fundes:</p> <input type="date" placeholder="12.06.2023" id="date" name="Datum des Fundes">
             <p>Beschreibung des/der Fundstücke/s: <span style="color:red;">*</span></p> <textarea id="description" name="description" rows="5" maxlength="1000" required></textarea>
