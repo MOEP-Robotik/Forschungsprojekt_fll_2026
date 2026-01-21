@@ -10,9 +10,33 @@
             <span class="mdi mdi-chevron-left"></span>
         </a>
         <form id="report-form">
-            <p>Name des Fundes: <span style="color:red;">*</span></p> <input type="text" placeholder="Stein" id="name" name="name" maxlength="100" required>
-            <p>Datum des Fundes:</p> <input type="date" placeholder="12.06.2023" id="date" name="Datum des Fundes">
-            <p>Beschreibung des/der Fundstücke/s: <span style="color:red;">*</span></p> <textarea id="description" name="description" rows="5" maxlength="1000" required></textarea>
+            <p>Name des Fundes: <span style="color: red">*</span></p>
+            <input
+                type="text"
+                placeholder="Stein"
+                id="name"
+                name="name"
+                maxlength="100"
+                required
+            />
+            <p>Datum des Fundes:</p>
+            <input
+                type="date"
+                placeholder="12.06.2023"
+                id="date"
+                name="Datum des Fundes"
+            />
+            <p>
+                Beschreibung des/der Fundstücke/s:
+                <span style="color: red">*</span>
+            </p>
+            <textarea
+                id="description"
+                name="description"
+                rows="5"
+                maxlength="1000"
+                required
+            ></textarea>
             <label for="material">Am besten passendes Material:</label>
             <select name="material" id="material">
                 <option value="stein">Stein</option>
@@ -26,18 +50,23 @@
 
                 <option value="knochen">Knochen</option>
                 <option value="geweih">Geweih</option>
-                <option value="other">etwas anderes</option>     
+                <option value="other">etwas anderes</option>
             </select>
-            
+
             <div class="dimensions">
                 <strong>Maße des Fundes:</strong>
-                <p>Länge:</p> <input type="number" placeholder="25cm" name="lenght">
-                <p>Breite:</p> <input type="number" placeholder="12,5cm" name="widht">
-                <p>Höhe:</p> <input type="number" placeholder="6,25cm" name="hight">
-                <p>Gewicht:</p> <input type="number" placeholder="50kg" name="weight">
+                <p>Länge:</p>
+                <input type="number" placeholder="25cm" name="lenght" />
+                <p>Breite:</p>
+                <input type="number" placeholder="12,5cm" name="widht" />
+                <p>Höhe:</p>
+                <input type="number" placeholder="6,25cm" name="hight" />
+                <p>Gewicht:</p>
+                <input type="number" placeholder="50kg" name="weight" />
             </div>
 
-            <p>Fotos der/des Fundstücke/s:</p> <input type="file" id="image" name="image">
+            <p>Fotos der/des Fundstücke/s:</p>
+            <input type="file" id="image" name="image" />
             <div class="position">
                 <strong>Position des Fundes:</strong>
                 <p>Längengrad (Longitude): <span style="color: red">*</span></p>
