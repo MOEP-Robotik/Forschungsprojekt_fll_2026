@@ -1,4 +1,3 @@
-import './finds.css';
+import "./finds.css";
 
-document.addEventListener('DOMContentLoaded', () => {
-});
+document.addEventListener("DOMContentLoaded", () => {});

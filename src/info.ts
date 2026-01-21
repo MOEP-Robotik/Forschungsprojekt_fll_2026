@@ -1,4 +1,3 @@
-import './info.css';
+import "./info.css";
 
-document.addEventListener('DOMContentLoaded', () => {
-});
+document.addEventListener("DOMContentLoaded", () => {});
