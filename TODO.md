@@ -23,3 +23,6 @@
 - [ ] Bilder Upload hinzufügen
 - [ ] Logout Knopf
 - [ ] Funde zum account hinzufügen
+
+## Sonstiges
+- [] AGB erstellen, ausdenken und implementieren --> Wollen wir das wirklich? Dürfen wir das überhaupt?
