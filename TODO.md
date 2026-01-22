@@ -25,4 +25,4 @@
 - [ ] Funde zum account hinzufügen
 
 ## Sonstiges
-- [] AGB erstellen, ausdenken und implementieren --> Wollen wir das wirklich? Dürfen wir das überhaupt?
+- [ ] AGB erstellen, ausdenken und implementieren --> Wollen wir das wirklich? Dürfen wir das überhaupt?
