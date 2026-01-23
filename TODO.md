@@ -27,3 +27,5 @@
 ## Sonstiges
 
 - [ ] AGB erstellen, ausdenken und implementieren --> Wollen wir das wirklich? Dürfen wir das überhaupt?
+
+- [ ] ### Offline verfügbar machen 
