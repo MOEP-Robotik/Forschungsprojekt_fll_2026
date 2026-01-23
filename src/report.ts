@@ -106,6 +106,7 @@ async function sendReport(event: Event) {
     ) as HTMLTextAreaElement;
     const lonInput = document.getElementById("lng-input") as HTMLInputElement;
     const latInput = document.getElementById("lat-input") as HTMLInputElement;
+    const imageInput = document.getElementById("image") as HTMLInputElement;
 
     if (
         !nameInput?.value ||
@@ -127,25 +128,28 @@ async function sendReport(event: Event) {
         return;
     }
 
-    // limitieren des Titels auf 100 Zeichen und der Beschreibung auf 1000 Zeichen, sowie der telefonnummer auf 20 zeichen
-    const reportData = {
-        title: nameInput.value.substring(0, 100) || "Fundstück",
-        description: descriptionInput.value.substring(0, 1000),
-        coordinate: {
-            lon: lon,
-            lat: lat,
-        },
-        date: dateInput.value,
-        jwt_token: localStorage.getItem("jwt_token") ?? "",
-    };
+    // FormData erstellen für Datei-Uploads
+    const formData = new FormData();
+    formData.append("title", nameInput.value.substring(0, 100) || "Fundstück");
+    formData.append("description", descriptionInput.value.substring(0, 1000));
+    formData.append("coordinate[lon]", lon.toString());
+    formData.append("coordinate[lat]", lat.toString());
+    if (dateInput.value) {
+        formData.append("date", dateInput.value);
+    }
+    formData.append("jwt_token", localStorage.getItem("jwt_token") ?? "");
+
+    // Bilder hinzufügen
+    if (imageInput?.files && imageInput.files.length > 0) {
+        for (let i = 0; i < imageInput.files.length; i++) {
+            formData.append("image[]", imageInput.files[i]);
+        }
+    }
 
     try {
         const response = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(reportData),
+            body: formData,
         });
 
         if (!response.ok) {
