@@ -11,8 +11,12 @@
 
 - [x] Login Seite
 - [ ] Dashboard Seite
+- [ ] Logout Knopf
 
 ## Backend
+
+> [!WARNING]
+> Permissions sind safe falsch -> also richtig setzen
 
 - [ ] API-Endpunkte dokumentieren
 - [x] Datenbankmodellierung
@@ -21,7 +25,6 @@
 - [ ] Gucken, ob Namen von DB Spalten o.ä. richtig sind und ob alle gebraucht werden
 - [ ] Filepath bei der Spericherung von CSV und Bildern überlegen
 - [ ] Bilder Upload hinzufügen
-- [ ] Logout Knopf
 - [ ] Funde zum account hinzufügen
 
 ## Sonstiges
