@@ -10,8 +10,8 @@
     }
 }
 
-
-body, html {
+body,
+html {
     background-color: var(--maincolor);
     height: 100%;
     margin: 0;
@@ -87,14 +87,13 @@ h1 {
     justify-content: center;
 }
 
-
 .container {
     display: flex;
-    flex-direction: row;    /* horizontal anordnen */
-    gap: 1rem;              /* Abstand zwischen den Buttons */
+    flex-direction: row; /* horizontal anordnen */
+    gap: 1rem; /* Abstand zwischen den Buttons */
     justify-content: center; /* optional: alles zentrieren */
-    align-items: center;     /* vertikal ausrichten, falls Buttons unterschiedliche Höhen haben */
-    flex-wrap: wrap;         /* optional: auf kleine Bildschirme umbrechen */
+    align-items: center; /* vertikal ausrichten, falls Buttons unterschiedliche Höhen haben */
+    flex-wrap: wrap; /* optional: auf kleine Bildschirme umbrechen */
 }
 
 .dings {
@@ -107,7 +106,10 @@ h1 {
     display: none;
 }
 
-.finds-button, .report-button, .account-button, .info-button {
+.finds-button,
+.report-button,
+.account-button,
+.info-button {
     width: 110px;
     height: 110px;
     display: flex;
@@ -131,24 +133,34 @@ h1 {
         transform 500ms ease;
 }
 
-.finds-button:hover, .report-button:hover, .account-button:hover, .info-button:hover {
+.finds-button:hover,
+.report-button:hover,
+.account-button:hover,
+.info-button:hover {
     transform: scale(1.2);
 }
 
-span[name="finds-mdi"], span[name="report-mdi"], span[name="account-mdi"], span[name="info-mdi"] {
+span[name="finds-mdi"],
+span[name="report-mdi"],
+span[name="account-mdi"],
+span[name="info-mdi"] {
     color: var(--textcolor);
     font-size: 5em;
 }
 
-.finds-text, .account-text, .info-text, .report-text {
+.finds-text,
+.account-text,
+.info-text,
+.report-text {
     color: var(--textcolor);
 }
-
 
 /* für mobil: */
 
 @media (max-width: 768px) {
-    .finds-text, .account-text, .info-text {
+    .finds-text,
+    .account-text,
+    .info-text {
         display: none;
     }
 
@@ -159,30 +171,35 @@ span[name="finds-mdi"], span[name="report-mdi"], span[name="account-mdi"], span[
     .container {
         width: 100%;
         display: flex;
-        flex-direction:column;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         /* border: 1px solid red; */
     }
-    .dings  {
+    .dings {
         display: flex;
-        justify-content: center; 
-        align-items: center;     
+        justify-content: center;
+        align-items: center;
         width: 80%;
-        
     }
 
-    span[name="finds-mdi"], span[name="report-mdi"], span[name="account-mdi"], span[name="info-mdi"] {
+    span[name="finds-mdi"],
+    span[name="report-mdi"],
+    span[name="account-mdi"],
+    span[name="info-mdi"] {
         font-size: 2.5em;
     }
 
-    .finds-container, .report-container, .account-container, .info-container {
+    .finds-container,
+    .report-container,
+    .account-container,
+    .info-container {
         display: flex;
         /* justify-content: space-between;  */
         justify-content: center;
         align-items: center;
         margin-left: 5px;
-        margin-right: 5px;     
+        margin-right: 5px;
         width: 100%;
     }
     #report-container {
@@ -195,14 +212,16 @@ span[name="finds-mdi"], span[name="report-mdi"], span[name="account-mdi"], span[
         margin: 0 auto;
         box-sizing: border-box;
         /* border: 1px solid red; */
-
     }
 
     .login-button {
         display: none;
     }
 
-    .finds-button, .report-button, .account-button, .info-button {
+    .finds-button,
+    .report-button,
+    .account-button,
+    .info-button {
         width: 100%;
         display: flex;
         flex-direction: row;
@@ -224,8 +243,11 @@ span[name="finds-mdi"], span[name="report-mdi"], span[name="account-mdi"], span[
             transform 500ms ease;
     }
 
-    .report-button:hover, .finds-button:hover, .account-button:hover, .info-button:hover {
+    .report-button:hover,
+    .finds-button:hover,
+    .account-button:hover,
+    .info-button:hover {
         transform: scale(1.15);
     }
-/* ich kann das alles nicht mehr */
+    /* ich kann das alles nicht mehr */
 }
