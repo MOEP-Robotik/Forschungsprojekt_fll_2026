@@ -25,52 +25,75 @@
                     <!-- leeres div um links aufzufüllen -->
                     <div style="flex: 1"></div>
                     <h1 style="margin: 0; flex: 1; text-align: center">
-                        Coole Überschrift
+                        Überschrift
                     </h1>
                     <div id="login-container" class="login-container">
                         <a
-                            href="src/account.html"
+                            href="src/info.html"
                             style="text-decoration: none"
                         >
                             <button type="button" class="login-button">
-                                Account
+                                Info 
+                                 <span class="mdi mdi-information-slab-circle-outline"></span>
                             </button>
+                        
                         </a>
                     </div>
                 </div>
             </div>
 
             <div class="container">
-                <a
-                    href="src/finds.html"
-                    style="text-decoration: none; color: inherit"
-                >
-                    <div class="button">
-                        <span class="icon"></span>
-                        <span class="text">Meine Funde</span>
-                    </div>
-                </a>
+                <div id="report-container" class="report-container">
+                    <a
+                        href="src/report.html"
+                        style="text-decoration: none"
+                    >
+                        <button type="button" class="report-button">
+                            <span class="mdi mdi-plus" name="report-mdi"></span>
+                            <span class="report-text">neue Fund-Meldung</span>
+                        </button>
+                    </a>
+                </div>
 
-                <a
-                    href="src/report.html"
-                    style="text-decoration: none; color: inherit"
-                >
-                    <div class="button1">
-                        <span class="icon1">+</span>
-                        <span class="text1">Neue Meldung</span>
+                <div class="dings">
+                    <div id="finds-container" class="finds-container">
+                        <a
+                            href="src/finds.html"
+                            style="text-decoration: none"
+                        >
+                            <button type="button" class="finds-button">
+                                <span class="mdi mdi-archive-outline" name="finds-mdi"></span>
+                                <span class="finds-text">meine Funde</span>
+                            </button>
+                        </a>
                     </div>
-                </a>
+                 
+                    <div id="account-container" class="account-container">
+                        <a
+                            href="src/account.html"
+                            style="text-decoration: none"
+                        >
+                            <button type="button" class="account-button">
+                                <span class="mdi mdi-account-outline" name="account-mdi"></span>
+                                <span class="account-text">Account</span>
+                            </button>                            
+                        </a>
+                    </div>
 
-                <a
-                    href="src/info.html"
-                    style="text-decoration: none; color: inherit"
-                >
-                    <div class="button2">
-                        <span class="icon2">i</span>
-                        <span class="text2">Info</span>
+                    <div id="info-container" class="info-container">
+                        <a
+                            href="src/info.html"
+                            style="text-decoration: none"
+                        >
+                            <button type="button" class="info-button">
+                                <span class="mdi mdi-information-slab-symbol" name="info-mdi"></span>
+                                <span class="info-text">Info</span>
+                            </button>                            
+                        </a>
                     </div>
-                </a>
+                    
             </div>
+        </div>
 
             <div class="map-wrapper">
                 <div id="map"></div>

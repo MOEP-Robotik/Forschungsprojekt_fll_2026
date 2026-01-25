@@ -1,6 +1,7 @@
 import "./main.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "@mdi/font/css/materialdesignicons.min.css";
 
 document.addEventListener("DOMContentLoaded", () => {
     const mapElement = document.getElementById("map");
