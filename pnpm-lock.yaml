@@ -10,6 +10,12 @@ importers:
             "@mdi/font":
                 specifier: ^7.4.47
                 version: 7.4.47
+            dev:
+                specifier: ^0.1.3
+                version: 0.1.3
+            ev:
+                specifier: ^0.0.7
+                version: 0.0.7
             leaflet:
                 specifier: ^1.9.4
                 version: 1.9.4
@@ -468,12 +474,25 @@ packages:
                 integrity: sha512-YrT9ArrGaHForBaCNwFjoqJWmn8G1Pr7+BH/vwyLHciA9qT/wSiuOhxGCT50JA5xLvFBd6PIiGkE3afxcPE1nw==,
             }
 
+    bindings@1.5.0:
+        resolution:
+            {
+                integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==,
+            }
+
     detect-libc@2.1.2:
         resolution:
             {
                 integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==,
             }
         engines: { node: ">=8" }
+
+    dev@0.1.3:
+        resolution:
+            {
+                integrity: sha512-flCHQwAkXk3+1up/wo93Ms9E5Wf9K28ZGA7Oz55nBZ8OTdPPhyvZrwsT+twtySTFHIwv0w9CUNtagZgu1MgzXQ==,
+            }
+        hasBin: true
 
     esbuild@0.21.5:
         resolution:
@@ -483,6 +502,26 @@ packages:
         engines: { node: ">=12" }
         hasBin: true
 
+    ev@0.0.7:
+        resolution:
+            {
+                integrity: sha512-v85+I5QIDWeRWavZDisHyva4FEsneKbUW0LgFoitZXNOYHkenNYFCTlSg6V5HKWPzufDDYPC+WzdUndapjnpnw==,
+            }
+        engines: { node: ">= 0.6" }
+
+    file-uri-to-path@1.0.0:
+        resolution:
+            {
+                integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==,
+            }
+
+    fnutils@0.0.1:
+        resolution:
+            {
+                integrity: sha512-MxV+kcoS0D/UyXXfowelv1aiB9pEOKt4tpFNiaKq5TZ18F59zJyk933Uxbb/pInDFwK70Rl7K+SI7kt2czqZwQ==,
+            }
+        engines: { node: ">= 0.6" }
+
     fsevents@2.3.3:
         resolution:
             {
@@ -490,6 +529,14 @@ packages:
             }
         engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
         os: [darwin]
+
+    inotify@1.4.6:
+        resolution:
+            {
+                integrity: sha512-WW8/uqIA04O3AePQVe/Ms3ZLR0yGamaz8YOEpaXc4WBAGOPZfzu58wWErEPSUYaPyDrJRIeCn6PEIQgC1ZyQ5w==,
+            }
+        engines: { node: ">=0.8" }
+        os: [linux]
 
     leaflet@1.9.4:
         resolution:
@@ -602,6 +649,12 @@ packages:
                 integrity: sha512-utfs7Pr5uJyyvDETitgsaqSyjCb2qNRAtuqUeWIAKztsOYdcACf2KtARYXg2pSvhkt+9NfoaNY7fxjl6nuMjIQ==,
             }
         engines: { node: ">= 12.0.0" }
+
+    nan@2.24.0:
+        resolution:
+            {
+                integrity: sha512-Vpf9qnVW1RaDkoNKFUvfxqAbtI8ncb8OJlqZ9wwpXzWPEsvsB1nvdUi6oYrHIkQ1Y/tMDnr1h4nczS0VB9Xykg==,
+            }
 
     nanoid@3.3.11:
         resolution:
@@ -854,8 +907,16 @@ snapshots:
         dependencies:
             undici-types: 6.21.0
 
+    bindings@1.5.0:
+        dependencies:
+            file-uri-to-path: 1.0.0
+
     detect-libc@2.1.2:
         optional: true
+
+    dev@0.1.3:
+        dependencies:
+            inotify: 1.4.6
 
     esbuild@0.21.5:
         optionalDependencies:
@@ -883,8 +944,21 @@ snapshots:
             "@esbuild/win32-ia32": 0.21.5
             "@esbuild/win32-x64": 0.21.5
 
+    ev@0.0.7:
+        dependencies:
+            fnutils: 0.0.1
+
+    file-uri-to-path@1.0.0: {}
+
+    fnutils@0.0.1: {}
+
     fsevents@2.3.3:
         optional: true
+
+    inotify@1.4.6:
+        dependencies:
+            bindings: 1.5.0
+            nan: 2.24.0
 
     leaflet@1.9.4: {}
 
@@ -937,6 +1011,8 @@ snapshots:
             lightningcss-win32-arm64-msvc: 1.30.2
             lightningcss-win32-x64-msvc: 1.30.2
         optional: true
+
+    nan@2.24.0: {}
 
     nanoid@3.3.11: {}
 
