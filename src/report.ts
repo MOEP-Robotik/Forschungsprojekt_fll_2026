@@ -149,7 +149,7 @@ async function sendReport(event: Event) {
     // Bilder hinzufügen
     if (imageInput?.files && imageInput.files.length > 0) {
         for (let i = 0; i < imageInput.files.length; i++) {
-            formData.append("image[]", imageInput.files[i]);
+            formData.append("images[]", imageInput.files[i]);
         }
     }
 
