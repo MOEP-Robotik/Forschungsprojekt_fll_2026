@@ -9,3 +9,7 @@ pnpm run dev
 ```
 
 Die Web-App wird dann unter [http://localhost:5173](http://localhost:5173) verfügbar sein.
+
+## Backend
+
+Das Backend kann man [hier](https://github.com/MOEP-Robotik/fll_2026_servercode) finden!
