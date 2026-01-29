@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const funde = await getFunde();
     fundliste.innerHTML = `
     
-    `
-
+    `;
 });
 
 interface Fund {
@@ -24,18 +23,20 @@ async function getFunde(): Promise<Array<Fund>> {
         const res = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ "jwt_token": localStorage.getItem("jwt_token")}),
+            body: JSON.stringify({
+                jwt_token: localStorage.getItem("jwt_token"),
+            }),
         });
 
         const data = await res.json();
 
         if (data.success) {
-            console.log(data)
+            console.log(data);
         } else {
             console.log("Get unsuccessful: ", data);
         }
     } catch (err) {
         console.error("Fetch error:", err);
     }
-    return new Array<Fund>;
+    return new Array<Fund>();
 }
