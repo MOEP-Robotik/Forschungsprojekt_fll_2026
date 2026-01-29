@@ -1,17 +1,25 @@
 import "./report.css";
 import L from "leaflet";
+import VectorTileLayer from "leaflet-vector-tile-layer";
 import "leaflet/dist/leaflet.css";
 import "@mdi/font/css/materialdesignicons.min.css";
-import getApiEndpoint from "./settings";
+import { getApiEndpoint, getUseRasterTiles } from "./settings";
 
 document.addEventListener("DOMContentLoaded", () => {
     const mapElement = document.getElementById("map");
     if (!mapElement) return;
 
     const map = L.map("map").setView([51.9481, 10.2651], 6);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(map);
+    if (getUseRasterTiles()) {
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors",
+        }).addTo(map);
+    } else {
+        new VectorTileLayer({
+            url: `${getApiEndpoint}/tiles/{z}/{x}/{y}.pbf`,
+            attribution: "&copy; OpenStreetMap contributors",
+        }).addTo(map);
+    }
 
     let currentMarker: L.Marker | null = null;
     let userLocationDot: L.CircleMarker | null = null;

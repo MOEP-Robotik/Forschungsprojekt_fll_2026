@@ -1,7 +1,7 @@
 import "./account.css";
 import "./report.css";
 import "@mdi/font/css/materialdesignicons.min.css";
-import getApiEndpoint from "./settings.ts";
+import { getApiEndpoint } from "./settings.ts";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const isLoggedIn = !!localStorage.getItem("jwt_token");
