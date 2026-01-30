@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         fundHTML = document.createElement("li");
         fundHTML.innerHTML = `
             
-        `
+        `;
         fundliste.appendChild(fundHTML);
-    })
+    });
 });
 
 interface Fund {
@@ -27,9 +27,10 @@ async function getFunde(): Promise<Array<Fund>> {
     try {
         const res = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "GET",
-            headers: { "Content-Type": "application/json", 
-                "Authorization": localStorage.getItem("jwt_token") ?? ''
-            }
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("jwt_token") ?? "",
+            },
         });
 
         const data = await res.json();
