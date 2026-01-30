@@ -156,7 +156,7 @@ async function sendReport(event: Event) {
         const response = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("jwt_token")}`,
+                Authorization: localStorage.getItem("jwt_token") ?? "",
             },
             body: formData,
         });
