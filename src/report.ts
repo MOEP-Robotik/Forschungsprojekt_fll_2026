@@ -144,7 +144,6 @@ async function sendReport(event: Event) {
     if (dateInput.value) {
         formData.append("date", dateInput.value);
     }
-    formData.append("jwt_token", localStorage.getItem("jwt_token") ?? "");
 
     // Bilder hinzufügen
     if (imageInput?.files && imageInput.files.length > 0) {
@@ -156,6 +155,9 @@ async function sendReport(event: Event) {
     try {
         const response = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "POST",
+            headers: {
+                Authorization: localStorage.getItem("jwt_token") ?? "",
+            },
             body: formData,
         });
 
