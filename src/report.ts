@@ -1,6 +1,6 @@
 import "./report.css";
 import L from "leaflet";
-import VectorTileLayer from "leaflet-vector-tile-layer";
+import "@maplibre/maplibre-gl-leaflet";
 import "leaflet/dist/leaflet.css";
 import "@mdi/font/css/materialdesignicons.min.css";
 import { getApiEndpoint, getUseRasterTiles } from "./settings";
@@ -15,9 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
             attribution: "&copy; OpenStreetMap contributors",
         }).addTo(map);
     } else {
-        new VectorTileLayer({
-            url: `${getApiEndpoint}/tiles/{z}/{x}/{y}.pbf`,
-            attribution: "&copy; OpenStreetMap contributors",
+        L.maplibreGL({
+            style: `${getApiEndpoint()}/styles/basic-preview/style.json`,
         }).addTo(map);
     }
 

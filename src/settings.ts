@@ -3,5 +3,5 @@ export function getApiEndpoint(): string {
 }
 
 export function getUseRasterTiles(): boolean {
-    return localStorage.getItem("raster_tiles") === "true" ?? false;
+    return localStorage.getItem("raster_tiles") === "true";
 }
