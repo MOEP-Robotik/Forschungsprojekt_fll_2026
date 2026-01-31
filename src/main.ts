@@ -1,6 +1,7 @@
 import "./main.css";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "leaflet/dist/leaflet.css";
 import "@mdi/font/css/materialdesignicons.min.css";
 import { getApiEndpoint, getUseRasterTiles } from "./settings";
