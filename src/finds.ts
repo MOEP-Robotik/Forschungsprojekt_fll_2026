@@ -7,20 +7,20 @@ import "@mdi/font/css/materialdesignicons.min.css";
 import { getApiEndpoint, getUseRasterTiles } from "./settings";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    let map: any;
     const mapElement = document.getElementById("map");
-    if (mapElement) {
-        map = L.map("map").setView([51.9481, 10.2651], 6);
+    if (!mapElement) {
+        return;
+    }
+    const map: L.Map = L.map("map").setView([51.9481, 10.2651], 6);
 
-        if (getUseRasterTiles()) {
-            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: "&copy; OpenStreetMap contributors",
-            }).addTo(map);
-        } else {
-            L.maplibreGL({
-                style: `${getApiEndpoint()}/styles/osm-liberty/style.json`,
-            }).addTo(map);
-        }
+    if (getUseRasterTiles()) {
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors",
+        }).addTo(map);
+    } else {
+        L.maplibreGL({
+            style: `${getApiEndpoint()}/styles/osm-liberty/style.json`,
+        }).addTo(map);
     }
     const funde = await getFunde();
     funde.forEach((fund) => {
