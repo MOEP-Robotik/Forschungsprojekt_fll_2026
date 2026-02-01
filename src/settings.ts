@@ -1,5 +1,6 @@
 import "./main.css";
 import "./settings.css";
+import "@mdi/font/css/materialdesignicons.min.css";
 
 document.addEventListener("DOMContentLoaded", () => {
     const apiInput = document.getElementById(

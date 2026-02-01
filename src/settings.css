@@ -45,3 +45,13 @@ input:focus {
 button {
     cursor: pointer !important;
 }
+
+.back-button {
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+}
