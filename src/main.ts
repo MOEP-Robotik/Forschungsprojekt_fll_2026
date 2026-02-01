@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }).addTo(map);
         } else {
             L.maplibreGL({
-                style: `${getApiEndpoint()}/styles/basic-preview/style.json`,
+                style: `${getApiEndpoint()}/styles/osm-liberty/style.json`,
             }).addTo(map);
         }
     }
