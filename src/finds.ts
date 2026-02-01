@@ -83,11 +83,7 @@ async function getFunde(): Promise<Array<Fund>> {
         const data = await res.json();
 
         if (data.success) {
-            let funde: Array<Fund> = [];
-            data.data.forEach((el: Fund) => {
-                funde.push(el);
-            });
-            return funde;
+            return data.data as Array<Fund>;
         } else {
             console.error("Get unsuccessful: ", data);
         }
