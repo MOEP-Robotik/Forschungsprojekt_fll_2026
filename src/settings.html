@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <title>Settings</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <body>
+        <a href="/" style="text-decoration: none; color: inherit">
+            <span class="mdi mdi-chevron-left"></span>
+        </a>
+        <div class="center">
+            <h1>Settings</h1>
+        </div>
+        <hr />
+        <div id="settings-wrapper">
+            <div id="settings-forms" style="display: none">
+                <form id="api-endpoint-form" style="margin-bottom: 24px;">
+                    <label for="api-endpoint-input" style="display: block; margin-bottom: 8px;">
+                        API Endpoint
+                    </label>
+                    <input
+                        type="text"
+                        id="api-endpoint-input"
+                        name="api-endpoint"
+                        style="width: 100%; padding: 6px; box-sizing: border-box;"
+                        placeholder="http://moepserver:8000"
+                        autocomplete="off"
+                    />
+                    <button type="submit" style="margin-top: 20px;">
+                        Speichern
+                    </button>
+                </form>
+
+                <hr />
+                <br />
+
+                <form id="raster-tiles-form">
+                    <label for="raster-tiles-checkbox">
+                        <input
+                            type="checkbox"
+                            id="raster-tiles-checkbox"
+                            name="raster-tiles"
+                        />
+                        OSM Raster Tiles verwenden
+                    </label>
+                    <button type="submit" style="margin-top: 20px;">
+                        Speichern
+                    </button>
+                </form>
+            </div>
+        </div>
+        <script type="module" src="/src/settings.ts"></script>
+    </body>
+</html>
