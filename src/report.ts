@@ -1,17 +1,25 @@
 import "./report.css";
 import L from "leaflet";
+import "@maplibre/maplibre-gl-leaflet";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "leaflet/dist/leaflet.css";
 import "@mdi/font/css/materialdesignicons.min.css";
-import getApiEndpoint from "./settings";
+import { getApiEndpoint, getUseRasterTiles } from "./settings";
 
 document.addEventListener("DOMContentLoaded", () => {
     const mapElement = document.getElementById("map");
     if (!mapElement) return;
 
     const map = L.map("map").setView([51.9481, 10.2651], 6);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(map);
+    if (getUseRasterTiles()) {
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors",
+        }).addTo(map);
+    } else {
+        L.maplibreGL({
+            style: `${getApiEndpoint()}/styles/osm-liberty/style.json`,
+        }).addTo(map);
+    }
 
     let currentMarker: L.Marker | null = null;
     let userLocationDot: L.CircleMarker | null = null;
@@ -90,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isLoggedIn) {
             form.innerHTML = `
         <h2>Du musst eingeloggt sein, um einen Fund abzusenden!</h2>
-        <a href="src/account.html" style="text-decoration: none">
+        <a href="account.html" style="text-decoration: none">
             <button type="button" class="account-button">
                 <span class="mdi mdi-account-outline" name="account-mdi"></span>
                 Login
