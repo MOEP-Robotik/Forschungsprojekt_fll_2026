@@ -2,7 +2,7 @@ import "./finds.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "@mdi/font/css/materialdesignicons.min.css";
-import getApiEndpoint from "./settings";
+import { getApiEndpoint, getUseRasterTiles } from "./settings";
 
 document.addEventListener("DOMContentLoaded", async () => {
     let map: any;
@@ -10,10 +10,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (mapElement) {
         map = L.map("map").setView([51.9481, 10.2651], 6);
 
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(map);
+        if (getUseRasterTiles()) {
+            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "&copy; OpenStreetMap contributors",
+            }).addTo(map);
+        } else {
+            L.maplibreGL({
+                style: `${getApiEndpoint()}/styles/osm-liberty/style.json`,
+            }).addTo(map);
+        }
     }
     const funde = await getFunde();
     funde.forEach((fund) => {
