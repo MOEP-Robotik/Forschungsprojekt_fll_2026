@@ -33,7 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    document.getElementById("settings-forms")!.style.display = "";
+    const settingsForms = document.getElementById("settings-forms");
+    if (settingsForms) {
+        settingsForms.style.display = "";
+    }
 });
 
 export function setApiEndpoint(endpoint: string): void {
