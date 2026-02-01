@@ -1,3 +1,4 @@
+import "./globals.css";
 import "./report.css";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isLoggedIn) {
             form.innerHTML = `
         <h2>Du musst eingeloggt sein, um einen Fund abzusenden!</h2>
-        <a href="account.html" style="text-decoration: none">
+        <a href="account.html" class="back-link">
             <button type="button" class="account-button">
                 <span class="mdi mdi-account-outline" name="account-mdi"></span>
                 Login

@@ -1,3 +1,4 @@
+import "./globals.css";
 import "./account.css";
 import "./report.css";
 import "@mdi/font/css/materialdesignicons.min.css";
@@ -13,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!isLoggedIn) {
             accountForms!.style.display = "block";
             loginForm.innerHTML = `
-        <p>Ihre E-Mail: <span style="color:red;">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
-        <p>Passwort: <span style="color:red;">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+        <p>Ihre E-Mail: <span class="required-marker">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+        <p>Passwort: <span class="required-marker">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
         <br/>
         <button type="submit">Einloggen</button>
       `;
@@ -44,22 +45,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!isLoggedIn) {
             accountForms!.style.display = "block";
             registerForm.innerHTML = `
-        <p>Vorname: <span style="color:red;">*</span></p> 
+        <p>Vorname: <span class="required-marker">*</span></p> 
         <input type="text" placeholder="Max" id="vorname" name="vorname" required />
 
-        <p>Nachname: <span style="color:red;">*</span></p> 
+        <p>Nachname: <span class="required-marker">*</span></p> 
         <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
 
-        <p>Ihre E-Mail: <span style="color:red;">*</span></p> 
+        <p>Ihre E-Mail: <span class="required-marker">*</span></p> 
         <input type="email" placeholder="max.mustermann@example.de" id="register-email" name="email" required />
 
-        <p>Passwort: <span style="color:red;">*</span></p> 
+        <p>Passwort: <span class="required-marker">*</span></p> 
         <input type="password" placeholder="********" id="register-password" name="password" required />
 
-        <p>PLZ: <span style="color:red;">*</span></p> 
+        <p>PLZ: <span class="required-marker">*</span></p> 
         <input type="text" placeholder="12345" id="plz" name="plz" required />
 
-        <p>Telefonnummer: <span style="color:red;">*</span></p> 
+        <p>Telefonnummer: <span class="required-marker">*</span></p> 
         <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
 
         <br/>
