@@ -41,18 +41,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             marker.closePopup();
         });
 
-        /*const fundliste = document.getElementById("fundliste");
-        if (!fundliste) {
-            return;
-        };
-        marker.on('click', () => {
-            fundliste.innerHTML = `
-                <div class="title">${fund.title}</div>
-                <div class="description">${fund.description}</div>
-                <div class="date">${fund.timestamp}</div>
-                <div class="coordinate">${fund.coordinate.lon + " " + fund.coordinate.lat}</div>
-            `
-        });*/
         marker.addTo(map);
     });
 });
