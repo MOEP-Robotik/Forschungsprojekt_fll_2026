@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isLoggedIn) {
             form.innerHTML = `
         <h2>Du musst eingeloggt sein, um einen Fund abzusenden!</h2>
-        <a href="src/account.html" style="text-decoration: none">
+        <a href="account.html" style="text-decoration: none">
             <button type="button" class="account-button">
                 <span class="mdi mdi-account-outline" name="account-mdi"></span>
                 Login
