@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         apiForm.addEventListener("submit", (e) => {
             e.preventDefault();
             setApiEndpoint(apiInput.value);
-            alert("API Endpoint für API-Endpoint gespeichert.");
+            alert("API-Endpunkt wurde gespeichert.");
         });
     }
 
