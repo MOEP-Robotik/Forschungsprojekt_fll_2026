@@ -241,7 +241,10 @@ export async function getAccountInfo(): Promise<UserInfo | false> {
     try {
         const res = await fetch(`${getApiEndpoint()}/api/auth/userinfo`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", Authorization:jwt_token ?? ''},
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: jwt_token ?? "",
+            },
         });
 
         const data = await res.json();
