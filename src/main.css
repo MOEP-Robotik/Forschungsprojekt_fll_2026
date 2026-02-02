@@ -82,9 +82,8 @@ h1 {
 
 .dings {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 .container {
@@ -94,12 +93,6 @@ h1 {
     justify-content: center; /* optional: alles zentrieren */
     align-items: center; /* vertikal ausrichten, falls Buttons unterschiedliche Höhen haben */
     flex-wrap: wrap; /* optional: auf kleine Bildschirme umbrechen */
-}
-
-.dings {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
 }
 
 .info-container {
@@ -131,6 +124,7 @@ h1 {
     transition:
         background-color 500ms ease,
         transform 500ms ease;
+    padding-bottom: 1em;
 }
 
 .finds-button:hover,
