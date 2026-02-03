@@ -101,6 +101,34 @@ function switchLoginMode() {
 // ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob:
 (window as any).switchLoginMode = switchLoginMode;
 
+export async function requestGuestAccount() {
+    try {
+        const res = await fetch(`${getApiEndpoint()}/api/auth/requestguest`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+        if (data.success) {
+            localStorage.setItem("jwt_token", data.data.jwt_token);
+            console.log("Login successful!");
+            window.location.reload();
+        } else {
+            localStorage.setItem("jwt_token", "");
+            console.log("Login unsuccessful: ", data);
+        }
+    } catch (error) {
+        localStorage.setItem("jwt_token", "");
+        console.error("Error sending report:", error);
+        alert(
+            `Fehler beim Senden der Meldung: ${error instanceof Error ? error.message : "Unbekannter Fehler"}`,
+        );
+    }
+}
+
+// ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob: (selbe wie oben...)
+(window as any).requestGuestAccount = requestGuestAccount;
+
 async function sendLogin(event: Event) {
     if (isRegisterMode) {
         return sendRegister(event);

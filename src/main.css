@@ -101,8 +101,7 @@ h1 {
 
 .finds-button,
 .report-button,
-.account-button,
-.info-button {
+.account-button {
     width: 110px;
     height: 110px;
     display: flex;
@@ -129,9 +128,16 @@ h1 {
 
 .finds-button:hover,
 .report-button:hover,
-.account-button:hover,
-.info-button:hover {
+.account-button:hover {
     transform: scale(1.2);
+}
+
+
+.finds-button:hover span,
+.report-button:hover span,
+.account-button:hover span {
+    color: #000;
+    transition: 300ms;
 }
 
 span[name="finds-mdi"],
