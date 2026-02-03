@@ -54,40 +54,36 @@ function switchLoginMode() {
     const registerButton = document.getElementById("register-button");
     const registerHeader = document.getElementById("register-header");
     if (isRegisterMode) {
-        if (registerForm) {
-            registerForm.addEventListener("submit", sendRegister);
-            if (!isLoggedIn) {
-                accountForms!.style.display = "block";
-                registerForm.innerHTML = `
-                    <p>Vorname: <span class="required-marker">*</span></p> 
-                    <input type="text" placeholder="Max" id="vorname" name="vorname" required />
-            
-                    <p>Nachname: <span class="required-marker">*</span></p> 
-                    <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
-            
-                    <p>Ihre E-Mail: <span class="required-marker">*</span></p> 
-                    <input type="email" placeholder="max.mustermann@example.de" id="register-email" name="email" required />
-            
-                    <p>Passwort: <span class="required-marker">*</span></p> 
-                    <input type="password" placeholder="********" id="register-password" name="password" required />
-            
-                    <p>PLZ: <span class="required-marker">*</span></p> 
-                    <input type="text" placeholder="12345" id="plz" name="plz" required />
-            
-                    <p>Telefonnummer: <span class="required-marker">*</span></p> 
-                    <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
-            
-                    <br/>
-                    <button type="submit">Registrieren</button>
-                `;
-            }
+        if (registerForm && !isLoggedIn) {
+            accountForms!.style.display = "block";
+            registerForm.innerHTML = `
+                <p>Vorname: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="Max" id="vorname" name="vorname" required />
+        
+                <p>Nachname: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
+        
+                <p>Ihre E-Mail: <span class="required-marker">*</span></p> 
+                <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+        
+                <p>Passwort: <span class="required-marker">*</span></p> 
+                <input type="password" placeholder="********" id="password" name="password" required />
+        
+                <p>PLZ: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="12345" id="plz" name="plz" required />
+        
+                <p>Telefonnummer: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
+        
+                <br/>
+                <button type="submit">Registrieren</button>
+            `;
         }
         registerHeader!.innerText = "Du hast schon einen Account?";
         registerButton!.innerText = "Einloggen";
         return;
     }
     if (loginForm && accountWrapper) {
-        loginForm.addEventListener("submit", sendLogin);
         if (!isLoggedIn) {
             accountForms!.style.display = "block";
             loginForm.innerHTML = `
@@ -106,6 +102,9 @@ function switchLoginMode() {
 (window as any).switchLoginMode = switchLoginMode;
 
 async function sendLogin(event: Event) {
+    if (isRegisterMode) {
+        return sendRegister(event);
+    }
     event.preventDefault();
 
     const emailInput = document.getElementById("email") as HTMLInputElement;
@@ -173,11 +172,11 @@ async function sendRegister(event: Event) {
         "nachname",
     ) as HTMLInputElement | null;
     const passwordInput = document.getElementById(
-        "register-password",
+        "password",
     ) as HTMLInputElement | null;
     const plzInput = document.getElementById("plz") as HTMLInputElement | null;
     const emailInput = document.getElementById(
-        "register-email",
+        "email",
     ) as HTMLInputElement | null;
     const telefonnummerInput = document.getElementById(
         "telefonnummer",
