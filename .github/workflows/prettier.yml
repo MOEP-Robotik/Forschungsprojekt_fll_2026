@@ -1,7 +1,6 @@
 name: prettier (auto-commit)
 
 on:
-  pull_request:
   push:
   workflow_dispatch:
 
