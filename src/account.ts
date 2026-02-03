@@ -39,36 +39,71 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (splitter && isLoggedIn) {
         splitter.style.display = "none";
     }
-    const registerForm = document.getElementById("register-form");
-    if (registerForm) {
-        registerForm.addEventListener("submit", sendRegister);
+});
+
+let isRegisterMode = false;
+function switchLoginMode() {
+    isRegisterMode = !isRegisterMode;
+    console.log("isRegisterMode:", isRegisterMode);
+
+    const isLoggedIn = !!localStorage.getItem("jwt_token");
+    const loginForm = document.getElementById("login-form");
+    const accountWrapper = document.getElementById("account-wrapper");
+    const accountForms = document.getElementById("account-forms");
+    const registerForm = document.getElementById("login-form");
+    const registerButton = document.getElementById("register-button");
+    const registerHeader = document.getElementById("register-header");
+    if (isRegisterMode) {
+        if (registerForm) {
+            registerForm.addEventListener("submit", sendRegister);
+            if (!isLoggedIn) {
+                accountForms!.style.display = "block";
+                registerForm.innerHTML = `
+                    <p>Vorname: <span class="required-marker">*</span></p> 
+                    <input type="text" placeholder="Max" id="vorname" name="vorname" required />
+            
+                    <p>Nachname: <span class="required-marker">*</span></p> 
+                    <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
+            
+                    <p>Ihre E-Mail: <span class="required-marker">*</span></p> 
+                    <input type="email" placeholder="max.mustermann@example.de" id="register-email" name="email" required />
+            
+                    <p>Passwort: <span class="required-marker">*</span></p> 
+                    <input type="password" placeholder="********" id="register-password" name="password" required />
+            
+                    <p>PLZ: <span class="required-marker">*</span></p> 
+                    <input type="text" placeholder="12345" id="plz" name="plz" required />
+            
+                    <p>Telefonnummer: <span class="required-marker">*</span></p> 
+                    <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
+            
+                    <br/>
+                    <button type="submit">Registrieren</button>
+                `;
+            }
+        }
+        registerHeader!.innerText = "Du hast schon einen Account?";
+        registerButton!.innerText = "Einloggen";
+        return;
+    }
+    if (loginForm && accountWrapper) {
+        loginForm.addEventListener("submit", sendLogin);
         if (!isLoggedIn) {
             accountForms!.style.display = "block";
-            registerForm.innerHTML = `
-        <p>Vorname: <span class="required-marker">*</span></p> 
-        <input type="text" placeholder="Max" id="vorname" name="vorname" required />
-
-        <p>Nachname: <span class="required-marker">*</span></p> 
-        <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
-
-        <p>Ihre E-Mail: <span class="required-marker">*</span></p> 
-        <input type="email" placeholder="max.mustermann@example.de" id="register-email" name="email" required />
-
-        <p>Passwort: <span class="required-marker">*</span></p> 
-        <input type="password" placeholder="********" id="register-password" name="password" required />
-
-        <p>PLZ: <span class="required-marker">*</span></p> 
-        <input type="text" placeholder="12345" id="plz" name="plz" required />
-
-        <p>Telefonnummer: <span class="required-marker">*</span></p> 
-        <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
-
-        <br/>
-        <button type="submit">Registrieren</button>
-      `;
+            loginForm.innerHTML = `
+                <p>Ihre E-Mail: <span class="required-marker">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+                <p>Passwort: <span class="required-marker">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+                <br/>
+                <button type="submit">Einloggen</button>
+            `;
         }
+        registerHeader!.innerText = "Du hast noch keinen Account?";
+        registerButton!.innerText = "Registrieren";
     }
-});
+}
+
+// ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob:
+(window as any).switchLoginMode = switchLoginMode;
 
 async function sendLogin(event: Event) {
     event.preventDefault();
