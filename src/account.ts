@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           <p>Ihre E-Mail: ${accountInfo.email}</p>
           <p>Ihre Postleitzahl: ${accountInfo.plz}</p>
           <p>Ihre Telefonnummer: ${accountInfo.telefonnummer}</p>
+          <br/>
+          <button onclick="logout(true)">Ausloggen</button>
         `;
             } else {
                 alert(
@@ -101,6 +103,15 @@ function switchLoginMode() {
 // ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob:
 (window as any).switchLoginMode = switchLoginMode;
 
+export function logout(refresh: boolean = false) {
+    localStorage.setItem("jwt_token", "");
+    if (refresh)
+        window.location.reload();
+}
+
+// ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob: (selbe wie oben...)
+(window as any).logout = logout;
+
 export async function requestGuestAccount() {
     try {
         const res = await fetch(`${getApiEndpoint()}/api/auth/requestguest`, {
@@ -114,11 +125,11 @@ export async function requestGuestAccount() {
             console.log("Login successful!");
             window.location.reload();
         } else {
-            localStorage.setItem("jwt_token", "");
+            logout();
             console.log("Login unsuccessful: ", data);
         }
     } catch (error) {
-        localStorage.setItem("jwt_token", "");
+        logout();
         console.error("Error sending report:", error);
         alert(
             `Fehler beim Senden der Meldung: ${error instanceof Error ? error.message : "Unbekannter Fehler"}`,
@@ -179,12 +190,12 @@ export async function login(
             localStorage.setItem("jwt_token", data.data.jwt_token);
             return [true, ""];
         } else {
-            localStorage.setItem("jwt_token", "");
+            logout();
             console.log("Login unsuccessful: ", data);
             return [false, data.data?.message || "Unbekannter Fehler"];
         }
     } catch (err) {
-        localStorage.setItem("jwt_token", "");
+        logout();
         console.error("Fetch error:", err);
         return [false, ""];
     }
@@ -279,12 +290,12 @@ export async function register(
             localStorage.setItem("jwt_token", data.data.jwt_token);
             return [true, ""];
         } else {
-            localStorage.setItem("jwt_token", "");
+            logout();
             console.log("Registration unsuccessful: ", data);
             return [false, data.data?.message || "Unbekannter Fehler"];
         }
     } catch (err) {
-        localStorage.setItem("jwt_token", "");
+        logout();
         console.error("Fetch error during registration:", err);
         return [false, ""];
     }
@@ -325,8 +336,7 @@ export async function getAccountInfo(): Promise<UserInfo | false> {
             console.warn("getAccountInfo Problem: ", data);
             if (res.status === 401) {
                 console.warn("jwt expired!");
-                localStorage.setItem("jwt_token", "");
-                window.location.reload();
+                logout(true);
             }
             return false;
         }
