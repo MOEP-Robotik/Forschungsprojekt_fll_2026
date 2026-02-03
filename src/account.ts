@@ -105,8 +105,7 @@ function switchLoginMode() {
 
 export function logout(refresh: boolean = false) {
     localStorage.setItem("jwt_token", "");
-    if (refresh)
-        window.location.reload();
+    if (refresh) window.location.reload();
 }
 
 // ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob: (selbe wie oben...)
