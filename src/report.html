@@ -10,6 +10,44 @@
             <span class="mdi mdi-chevron-left"></span>
         </a>
         <form id="report-form">
+            <div id="guest-fields" style="display: none">
+                <p>Vorname: <span class="required-marker">*</span></p>
+                <input
+                    type="text"
+                    placeholder="Max"
+                    id="guest-vorname"
+                    name="guest-vorname"
+                />
+                <p>Nachname: <span class="required-marker">*</span></p>
+                <input
+                    type="text"
+                    placeholder="Mustermann"
+                    id="guest-nachname"
+                    name="guest-nachname"
+                />
+                <p>E-Mail: <span class="required-marker">*</span></p>
+                <input
+                    type="email"
+                    placeholder="max.mustermann@example.de"
+                    id="guest-email"
+                    name="guest-email"
+                />
+                <p>Postleitzahl: <span class="required-marker">*</span></p>
+                <input
+                    type="text"
+                    placeholder="12345"
+                    id="guest-plz"
+                    name="guest-plz"
+                />
+                <p>Telefonnummer: <span class="required-marker">*</span></p>
+                <input
+                    type="text"
+                    placeholder="+49 123 4567890"
+                    id="guest-telefonnummer"
+                    name="guest-telefonnummer"
+                />
+                <hr />
+            </div>
             <p>Name des Fundes: <span class="required-marker">*</span></p>
             <input
                 type="text"

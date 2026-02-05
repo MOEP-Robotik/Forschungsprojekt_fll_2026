@@ -105,6 +105,7 @@ function switchLoginMode() {
 
 export function logout(refresh: boolean = false) {
     localStorage.setItem("jwt_token", "");
+    localStorage.setItem("is_guest_account", "");
     if (refresh) window.location.reload();
 }
 
@@ -121,6 +122,7 @@ export async function requestGuestAccount() {
         const data = await res.json();
         if (data.success) {
             localStorage.setItem("jwt_token", data.data.jwt_token);
+            localStorage.setItem("is_guest_account", "true");
             console.log("Login successful!");
             window.location.reload();
         } else {

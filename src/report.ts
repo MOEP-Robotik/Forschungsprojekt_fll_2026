@@ -94,9 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const isLoggedIn = !!localStorage.getItem("jwt_token");
+    const isGuestAccount = !!localStorage.getItem("is_guest_account");
     const form = document.getElementById("report-form");
+    const guestFields = document.getElementById("guest-fields");
+
     if (form) {
-        if (!isLoggedIn) {
+        if (!isLoggedIn && !isGuestAccount) {
             form.innerHTML = `
         <h2>Du musst eingeloggt sein, um einen Fund abzusenden!</h2>
         <a href="account.html" class="back-link">
@@ -107,6 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
         </a>
 
       `;
+        } else if (isGuestAccount && guestFields) {
+            guestFields.style.display = "block";
+            const guestInputs = guestFields.querySelectorAll("input");
+            guestInputs.forEach((input) => input.setAttribute("required", ""));
         }
         form.addEventListener("submit", sendReport);
     }
@@ -124,6 +131,23 @@ async function sendReport(event: Event) {
     const latInput = document.getElementById("lat-input") as HTMLInputElement;
     const imageInput = document.getElementById("image") as HTMLInputElement;
 
+    const isGuestAccount = !!localStorage.getItem("is_guest_account");
+    const guestVornameInput = document.getElementById(
+        "guest-vorname",
+    ) as HTMLInputElement;
+    const guestNachnameInput = document.getElementById(
+        "guest-nachname",
+    ) as HTMLInputElement;
+    const guestEmailInput = document.getElementById(
+        "guest-email",
+    ) as HTMLInputElement;
+    const guestPlzInput = document.getElementById(
+        "guest-plz",
+    ) as HTMLInputElement;
+    const guestTelefonnummerInput = document.getElementById(
+        "guest-telefonnummer",
+    ) as HTMLInputElement;
+
     if (
         !nameInput?.value ||
         !descriptionInput?.value ||
@@ -134,6 +158,21 @@ async function sendReport(event: Event) {
             "Bitte alle Pflichtfelder ausfüllen (Name, Beschreibung, Koordinaten)",
         );
         return;
+    }
+
+    if (isGuestAccount) {
+        if (
+            !guestVornameInput?.value ||
+            !guestNachnameInput?.value ||
+            !guestEmailInput?.value ||
+            !guestPlzInput?.value ||
+            !guestTelefonnummerInput?.value
+        ) {
+            alert(
+                "Bitte alle Pflichtfelder ausfüllen (Vorname, Nachname, E-Mail, PLZ, Telefonnummer)",
+            );
+            return;
+        }
     }
 
     const lon = parseFloat(lonInput.value);
@@ -152,6 +191,14 @@ async function sendReport(event: Event) {
     formData.append("coordinate[lat]", lat.toString());
     if (dateInput.value) {
         formData.append("date", dateInput.value);
+    }
+
+    if (isGuestAccount) {
+        formData.append("guest[vorname]", guestVornameInput.value);
+        formData.append("guest[nachname]", guestNachnameInput.value);
+        formData.append("guest[email]", guestEmailInput.value);
+        formData.append("guest[plz]", guestPlzInput.value);
+        formData.append("guest[telefonnummer]", guestTelefonnummerInput.value);
     }
 
     // Bilder hinzufügen
