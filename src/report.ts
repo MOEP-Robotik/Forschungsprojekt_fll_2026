@@ -153,14 +153,14 @@ async function sendReport(event: Event) {
     formData.append("coordinate[lat]", lat.toString());
 
     const size = {
-        length: lengthInput.value,
-        width: widthInput.value,
-        height: heightInput.value,
-        weight: weightInput.value,
+        length: parseFloat(lengthInput.value),
+        width: parseFloat(widthInput.value),
+        height: parseFloat(heightInput.value),
+        weight: parseFloat(weightInput.value),
     };
 
     formData.append("size", JSON.stringify(size));
-    formData.append("material", materialInput.value.toString());
+    formData.append("material", materialInput.value);
     if (dateInput.value) {
         formData.append("date", dateInput.value);
     }

@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             riseOnHover: true,
             riseOffset: 500,
         });
+        if (!fund.material) {
+            fund.material = "error";
+        }
         let uppermaterial =
             fund.material.charAt(0).toUpperCase() + fund.material.slice(1); //Text großschreiben
         marker.bindPopup(`
