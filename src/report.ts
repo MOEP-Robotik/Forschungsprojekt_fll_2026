@@ -118,7 +118,9 @@ async function sendReport(event: Event) {
     const lonInput = document.getElementById("lng-input") as HTMLInputElement;
     const latInput = document.getElementById("lat-input") as HTMLInputElement;
     const imageInput = document.getElementById("image") as HTMLInputElement;
-    const materialInput = document.getElementById("material") as HTMLInputElement;
+    const materialInput = document.getElementById(
+        "material",
+    ) as HTMLInputElement;
     const lengthInput = document.getElementById("length") as HTMLInputElement;
     const widthInput = document.getElementById("width") as HTMLInputElement;
     const heightInput = document.getElementById("height") as HTMLInputElement;
@@ -133,9 +135,7 @@ async function sendReport(event: Event) {
         !heightInput?.value ||
         !weightInput?.value
     ) {
-        alert(
-            "Bitte alle Pflichtfelder ausfüllen (Koordinaten, Maße, usw.)",
-        );
+        alert("Bitte alle Pflichtfelder ausfüllen (Koordinaten, Maße, usw.)");
         return;
     }
 
@@ -156,11 +156,11 @@ async function sendReport(event: Event) {
         length: lengthInput.value,
         width: widthInput.value,
         height: heightInput.value,
-        weight: weightInput.value
+        weight: weightInput.value,
     };
 
     formData.append("size", JSON.stringify(size));
-    formData.append("material", materialInput.value.toString())
+    formData.append("material", materialInput.value.toString());
     if (dateInput.value) {
         formData.append("date", dateInput.value);
     }
@@ -173,7 +173,7 @@ async function sendReport(event: Event) {
     }
 
     try {
-        console.log(formData)
+        console.log(formData);
         const response = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "POST",
             headers: {

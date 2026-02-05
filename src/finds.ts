@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             riseOnHover: true,
             riseOffset: 500,
         });
-        let uppermaterial = fund.material.charAt(0).toUpperCase() + fund.material.slice(1); //Text großschreiben
+        let uppermaterial =
+            fund.material.charAt(0).toUpperCase() + fund.material.slice(1); //Text großschreiben
         marker.bindPopup(`
             <div class="material">${uppermaterial}</div>
             <div class="date">${fund.date}</div>
