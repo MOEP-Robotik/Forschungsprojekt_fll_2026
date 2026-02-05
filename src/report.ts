@@ -120,7 +120,7 @@ async function sendReport(event: Event) {
     const imageInput = document.getElementById("image") as HTMLInputElement;
     const materialInput = document.getElementById(
         "material",
-    ) as HTMLInputElement;
+    ) as HTMLSelectElement;
     const lengthInput = document.getElementById("length") as HTMLInputElement;
     const widthInput = document.getElementById("width") as HTMLInputElement;
     const heightInput = document.getElementById("height") as HTMLInputElement;
