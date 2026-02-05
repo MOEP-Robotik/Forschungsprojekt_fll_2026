@@ -122,14 +122,17 @@ document.addEventListener("DOMContentLoaded", () => {
 async function sendReport(event: Event) {
     event.preventDefault();
 
-    const nameInput = document.getElementById("name") as HTMLInputElement;
     const dateInput = document.getElementById("date") as HTMLInputElement;
-    const descriptionInput = document.getElementById(
-        "description",
-    ) as HTMLTextAreaElement;
     const lonInput = document.getElementById("lng-input") as HTMLInputElement;
     const latInput = document.getElementById("lat-input") as HTMLInputElement;
     const imageInput = document.getElementById("image") as HTMLInputElement;
+    const materialInput = document.getElementById(
+        "material",
+    ) as HTMLSelectElement;
+    const lengthInput = document.getElementById("length") as HTMLInputElement;
+    const widthInput = document.getElementById("width") as HTMLInputElement;
+    const heightInput = document.getElementById("height") as HTMLInputElement;
+    const weightInput = document.getElementById("weight") as HTMLInputElement;
 
     const isGuestAccount = !!localStorage.getItem("is_guest_account");
     const guestVornameInput = document.getElementById(
@@ -149,14 +152,15 @@ async function sendReport(event: Event) {
     ) as HTMLInputElement;
 
     if (
-        !nameInput?.value ||
-        !descriptionInput?.value ||
         !lonInput?.value ||
-        !latInput?.value
+        !latInput?.value ||
+        !materialInput?.value ||
+        !lengthInput?.value ||
+        !widthInput?.value ||
+        !heightInput?.value ||
+        !weightInput?.value
     ) {
-        alert(
-            "Bitte alle Pflichtfelder ausfüllen (Name, Beschreibung, Koordinaten)",
-        );
+        alert("Bitte alle Pflichtfelder ausfüllen (Koordinaten, Maße, usw.)");
         return;
     }
 
@@ -185,10 +189,18 @@ async function sendReport(event: Event) {
 
     // FormData erstellen für Datei-Uploads
     const formData = new FormData();
-    formData.append("title", nameInput.value.substring(0, 100) || "Fundstück");
-    formData.append("description", descriptionInput.value.substring(0, 1000));
     formData.append("coordinate[lon]", lon.toString());
     formData.append("coordinate[lat]", lat.toString());
+
+    const size = {
+        length: parseFloat(lengthInput.value),
+        width: parseFloat(widthInput.value),
+        height: parseFloat(heightInput.value),
+        weight: parseFloat(weightInput.value),
+    };
+
+    formData.append("size", JSON.stringify(size));
+    formData.append("material", materialInput.value);
     if (dateInput.value) {
         formData.append("date", dateInput.value);
     }
