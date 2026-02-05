@@ -173,7 +173,6 @@ async function sendReport(event: Event) {
     }
 
     try {
-        console.log(formData);
         const response = await fetch(`${getApiEndpoint()}/api/submissions`, {
             method: "POST",
             headers: {
