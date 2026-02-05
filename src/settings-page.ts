@@ -1,4 +1,4 @@
-import "./main.css";
+import "./globals.css";
 import "./settings.css";
 import "@mdi/font/css/materialdesignicons.min.css";
 import {

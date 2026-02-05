@@ -1,3 +1,4 @@
+import "./globals.css";
 import "./account.css";
 import "./report.css";
 import "@mdi/font/css/materialdesignicons.min.css";
@@ -13,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!isLoggedIn) {
             accountForms!.style.display = "block";
             loginForm.innerHTML = `
-        <p>Ihre E-Mail: <span style="color:red;">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
-        <p>Passwort: <span style="color:red;">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+        <p>Ihre E-Mail: <span class="required-marker">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+        <p>Passwort: <span class="required-marker">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
         <br/>
         <button type="submit">Einloggen</button>
       `;
@@ -26,6 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           <p>Ihre E-Mail: ${accountInfo.email}</p>
           <p>Ihre Postleitzahl: ${accountInfo.plz}</p>
           <p>Ihre Telefonnummer: ${accountInfo.telefonnummer}</p>
+          <br/>
+          <button onclick="logout(true)">Ausloggen</button>
         `;
             } else {
                 alert(
@@ -38,38 +41,110 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (splitter && isLoggedIn) {
         splitter.style.display = "none";
     }
-    const registerForm = document.getElementById("register-form");
-    if (registerForm) {
-        registerForm.addEventListener("submit", sendRegister);
-        if (!isLoggedIn) {
-            accountForms!.style.display = "block";
-            registerForm.innerHTML = `
-        <p>Vorname: <span style="color:red;">*</span></p> 
-        <input type="text" placeholder="Max" id="vorname" name="vorname" required />
-
-        <p>Nachname: <span style="color:red;">*</span></p> 
-        <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
-
-        <p>Ihre E-Mail: <span style="color:red;">*</span></p> 
-        <input type="email" placeholder="max.mustermann@example.de" id="register-email" name="email" required />
-
-        <p>Passwort: <span style="color:red;">*</span></p> 
-        <input type="password" placeholder="********" id="register-password" name="password" required />
-
-        <p>PLZ: <span style="color:red;">*</span></p> 
-        <input type="text" placeholder="12345" id="plz" name="plz" required />
-
-        <p>Telefonnummer: <span style="color:red;">*</span></p> 
-        <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
-
-        <br/>
-        <button type="submit">Registrieren</button>
-      `;
-        }
-    }
 });
 
+let isRegisterMode = false;
+function switchLoginMode() {
+    isRegisterMode = !isRegisterMode;
+    console.log("isRegisterMode:", isRegisterMode);
+
+    const isLoggedIn = !!localStorage.getItem("jwt_token");
+    const loginForm = document.getElementById("login-form");
+    const accountWrapper = document.getElementById("account-wrapper");
+    const accountForms = document.getElementById("account-forms");
+    const registerForm = document.getElementById("login-form");
+    const registerButton = document.getElementById("register-button");
+    const registerHeader = document.getElementById("register-header");
+    if (isRegisterMode) {
+        if (registerForm && !isLoggedIn) {
+            accountForms!.style.display = "block";
+            registerForm.innerHTML = `
+                <p>Vorname: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="Max" id="vorname" name="vorname" required />
+        
+                <p>Nachname: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="Mustermann" id="nachname" name="nachname" required />
+        
+                <p>Ihre E-Mail: <span class="required-marker">*</span></p> 
+                <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+        
+                <p>Passwort: <span class="required-marker">*</span></p> 
+                <input type="password" placeholder="********" id="password" name="password" required />
+        
+                <p>PLZ: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="12345" id="plz" name="plz" required />
+        
+                <p>Telefonnummer: <span class="required-marker">*</span></p> 
+                <input type="text" placeholder="+49 123 4567890" id="telefonnummer" name="telefonnummer" required />
+        
+                <br/>
+                <button type="submit">Registrieren</button>
+            `;
+        }
+        registerHeader!.innerText = "Du hast schon einen Account?";
+        registerButton!.innerText = "Einloggen";
+        return;
+    }
+    if (loginForm && accountWrapper) {
+        if (!isLoggedIn) {
+            accountForms!.style.display = "block";
+            loginForm.innerHTML = `
+                <p>Ihre E-Mail: <span class="required-marker">*</span></p> <input type="email" placeholder="max.mustermann@example.de" id="email" name="email" required />
+                <p>Passwort: <span class="required-marker">*</span></p> <input type="password" placeholder="********" id="password" name="password" required />
+                <br/>
+                <button type="submit">Einloggen</button>
+            `;
+        }
+        registerHeader!.innerText = "Du hast noch keinen Account?";
+        registerButton!.innerText = "Registrieren";
+    }
+}
+
+// ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob:
+(window as any).switchLoginMode = switchLoginMode;
+
+export function logout(refresh: boolean = false) {
+    localStorage.setItem("jwt_token", "");
+    localStorage.setItem("is_guest_account", "");
+    if (refresh) window.location.reload();
+}
+
+// ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob: (selbe wie oben...)
+(window as any).logout = logout;
+
+export async function requestGuestAccount() {
+    try {
+        const res = await fetch(`${getApiEndpoint()}/api/auth/requestguest`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+        if (data.success) {
+            localStorage.setItem("jwt_token", data.data.jwt_token);
+            localStorage.setItem("is_guest_account", "true");
+            console.log("Login successful!");
+            window.location.reload();
+        } else {
+            logout();
+            console.log("Login unsuccessful: ", data);
+        }
+    } catch (error) {
+        logout();
+        console.error("Error sending report:", error);
+        alert(
+            `Fehler beim Senden der Meldung: ${error instanceof Error ? error.message : "Unbekannter Fehler"}`,
+        );
+    }
+}
+
+// ignorier das, muss gemacht werden damit die funktion oben gefunden werden kann :sob: (selbe wie oben...)
+(window as any).requestGuestAccount = requestGuestAccount;
+
 async function sendLogin(event: Event) {
+    if (isRegisterMode) {
+        return sendRegister(event);
+    }
     event.preventDefault();
 
     const emailInput = document.getElementById("email") as HTMLInputElement;
@@ -116,12 +191,12 @@ export async function login(
             localStorage.setItem("jwt_token", data.data.jwt_token);
             return [true, ""];
         } else {
-            localStorage.setItem("jwt_token", "");
+            logout();
             console.log("Login unsuccessful: ", data);
             return [false, data.data?.message || "Unbekannter Fehler"];
         }
     } catch (err) {
-        localStorage.setItem("jwt_token", "");
+        logout();
         console.error("Fetch error:", err);
         return [false, ""];
     }
@@ -137,11 +212,11 @@ async function sendRegister(event: Event) {
         "nachname",
     ) as HTMLInputElement | null;
     const passwordInput = document.getElementById(
-        "register-password",
+        "password",
     ) as HTMLInputElement | null;
     const plzInput = document.getElementById("plz") as HTMLInputElement | null;
     const emailInput = document.getElementById(
-        "register-email",
+        "email",
     ) as HTMLInputElement | null;
     const telefonnummerInput = document.getElementById(
         "telefonnummer",
@@ -216,12 +291,12 @@ export async function register(
             localStorage.setItem("jwt_token", data.data.jwt_token);
             return [true, ""];
         } else {
-            localStorage.setItem("jwt_token", "");
+            logout();
             console.log("Registration unsuccessful: ", data);
             return [false, data.data?.message || "Unbekannter Fehler"];
         }
     } catch (err) {
-        localStorage.setItem("jwt_token", "");
+        logout();
         console.error("Fetch error during registration:", err);
         return [false, ""];
     }
@@ -262,8 +337,7 @@ export async function getAccountInfo(): Promise<UserInfo | false> {
             console.warn("getAccountInfo Problem: ", data);
             if (res.status === 401) {
                 console.warn("jwt expired!");
-                localStorage.setItem("jwt_token", "");
-                window.location.reload();
+                logout(true);
             }
             return false;
         }

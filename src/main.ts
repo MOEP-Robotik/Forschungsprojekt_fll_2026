@@ -1,3 +1,4 @@
+import "./globals.css";
 import "./main.css";
 import L from "leaflet";
 import "@maplibre/maplibre-gl-leaflet";

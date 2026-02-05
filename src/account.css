@@ -1,7 +1,7 @@
-.center {
-    display: flex;
-    justify-content: center;
+.quarter-width {
+    width: 25%;
 }
-button {
-    cursor: pointer !important;
+
+.mb-8 {
+    margin-bottom: 0.5em;
 }
