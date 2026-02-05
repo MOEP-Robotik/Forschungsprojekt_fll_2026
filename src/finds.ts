@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const funde = await getFunde();
     funde.forEach((fund) => {
         let marker = L.marker([fund.coordinate.lat, fund.coordinate.lon], {
-            title: fund.title,
+            title: fund.material,
             riseOnHover: true,
             riseOffset: 500,
         });
+        let uppermaterial = fund.material.charAt(0).toUpperCase() + fund.material.slice(1); //Text großschreiben
         marker.bindPopup(`
-            <div class="title">${fund.title}</div>
-            <div class="description">${fund.description}</div>
-            <div class="date">${fund.timestamp}</div>
+            <div class="material">${uppermaterial}</div>
+            <div class="date">${fund.date}</div>
         `);
         marker.on("mouseover", () => {
             marker.openPopup();
@@ -51,10 +51,9 @@ interface coordinate {
 }
 
 interface Fund {
-    title: string;
+    material: string;
     coordinate: coordinate;
-    timestamp: string;
-    description: string;
+    date: string;
     //noch nicht vollständig!!!
 }
 

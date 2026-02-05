@@ -10,15 +10,6 @@
             <span class="mdi mdi-chevron-left"></span>
         </a>
         <form id="report-form">
-            <p>Name des Fundes: <span style="color: red">*</span></p>
-            <input
-                type="text"
-                placeholder="Stein"
-                id="name"
-                name="name"
-                maxlength="100"
-                required
-            />
             <p>Datum des Fundes:</p>
             <input
                 type="date"
@@ -26,17 +17,6 @@
                 id="date"
                 name="Datum des Fundes"
             />
-            <p>
-                Beschreibung des/der Fundstücke/s:
-                <span style="color: red">*</span>
-            </p>
-            <textarea
-                id="description"
-                name="description"
-                rows="5"
-                maxlength="1000"
-                required
-            ></textarea>
             <label for="material">Am besten passendes Material:</label>
             <select name="material" id="material">
                 <option value="stein">Stein</option>
@@ -54,15 +34,15 @@
             </select>
 
             <div class="dimensions">
-                <strong>Maße des Fundes:</strong>
+                <strong>Maße des Fundes:</strong> <!--Hier irgendwie was zu Einheiten hinzufügen-->
                 <p>Länge:</p>
-                <input type="number" placeholder="25cm" name="length" />
+                <input type="number" placeholder="25cm" name="length" id="length"/>
                 <p>Breite:</p>
-                <input type="number" placeholder="12,5cm" name="width" />
+                <input type="number" placeholder="12,5cm" name="width" id="width"/>
                 <p>Höhe:</p>
-                <input type="number" placeholder="6,25cm" name="height" />
+                <input type="number" placeholder="6,25cm" name="height" id="height"/>
                 <p>Gewicht:</p>
-                <input type="number" placeholder="50kg" name="weight" />
+                <input type="number" placeholder="50kg" name="weight" id="weight"/>
             </div>
 
             <p>Fotos der/des Fundstücke/s:</p>
