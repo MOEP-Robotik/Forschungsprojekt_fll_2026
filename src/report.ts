@@ -129,6 +129,9 @@ async function sendReport(event: Event) {
     const materialInput = document.getElementById(
         "material",
     ) as HTMLSelectElement;
+    const datierungsInput = document.getElementById(
+        "datierung",
+    ) as HTMLSelectElement;
     const lengthInput = document.getElementById("length") as HTMLInputElement;
     const widthInput = document.getElementById("width") as HTMLInputElement;
     const heightInput = document.getElementById("height") as HTMLInputElement;
@@ -201,6 +204,7 @@ async function sendReport(event: Event) {
 
     formData.append("size", JSON.stringify(size));
     formData.append("material", materialInput.value);
+    formData.append("datierung", datierungsInput.value);
     if (dateInput.value) {
         formData.append("date", dateInput.value);
     }
