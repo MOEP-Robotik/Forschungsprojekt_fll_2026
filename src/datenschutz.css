@@ -1,0 +1,60 @@
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 0 auto;
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    line-height: 1.6;
+    color: var(--textcolor);
+    justify-content: center;
+}
+
+article {
+    line-height: 1.8;
+}
+
+article h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--secondarycolor);
+    text-align: center;
+}
+
+article h2 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem;
+    color: var(--secondarycolor);
+    font-weight: 600;
+    text-align: center;
+}
+
+article section {
+    margin-bottom: 2rem;
+}
+
+article p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+article ul {
+    margin: 1rem 0 1rem 2rem;
+    padding: 0;
+}
+
+article ul li {
+    margin-bottom: 0.5rem;
+}
+
+article strong {
+    font-weight: 600;
+    color: var(--secondarycolor);
+}
+
+article em {
+    font-style: italic;
+}
