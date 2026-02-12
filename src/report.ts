@@ -124,7 +124,6 @@ async function sendReport(event: Event) {
     const readItInput = document.getElementById(
         "readItInput",
     ) as HTMLInputElement;
-    console.log(readItInput.checked);
     if (!readItInput.checked) {
         alert(
             "Die Datenschutzerklärung und die AGB müssen gelesen und akzeptiert werden",
