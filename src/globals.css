@@ -1,12 +1,14 @@
 :root {
     --maincolor: rgb(255, 255, 255);
     --textcolor: rgb(0, 0, 0);
+    --secundarycolor: rgb(223, 198, 155);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --maincolor: rgb(0, 0, 0);
         --textcolor: rgb(255, 255, 255);
+        --secundarycolor: rgb(223, 198, 155);
     }
 }
 
