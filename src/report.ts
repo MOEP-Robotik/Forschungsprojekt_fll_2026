@@ -121,10 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function sendReport(event: Event) {
     event.preventDefault();
-    const readItInput = document.getElementById("readItInput") as HTMLInputElement;
-    console.log(readItInput.checked)
-    if(!readItInput.checked) {
-        alert("Die Datenschutzerklärung und die AGB müssen gelesen und akzeptiert werden");
+    const readItInput = document.getElementById(
+        "readItInput",
+    ) as HTMLInputElement;
+    console.log(readItInput.checked);
+    if (!readItInput.checked) {
+        alert(
+            "Die Datenschutzerklärung und die AGB müssen gelesen und akzeptiert werden",
+        );
         return;
     }
 
