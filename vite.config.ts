@@ -12,7 +12,7 @@ export default defineConfig({
                 account: resolve(__dirname, "src/account.html"),
                 settings: resolve(__dirname, "src/settings.html"),
                 agb: resolve(__dirname, "src/agb.html"),
-                datenschutz: resolve(__dirname, "src/datenschutz.html"),  
+                datenschutz: resolve(__dirname, "src/datenschutz.html"),
             },
         },
     },
