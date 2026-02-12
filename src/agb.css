@@ -20,14 +20,14 @@ article {
 article h1 {
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: var(--secundarycolor);
+    color: var(--secondarycolor);
     text-align: center;
 }
 
 article h2 {
     font-size: 1.3rem;
     margin: 1.5rem 0 1rem;
-    color: var(--secundarycolor);
+    color: var(--secondarycolor);
     font-weight: 600;
     text-align: center;
 }
@@ -52,7 +52,7 @@ article ul li {
 
 article strong {
     font-weight: 600;
-    color: var(--secundarycolor);
+    color: var(--secondarycolor);
 }
 
 article em {
