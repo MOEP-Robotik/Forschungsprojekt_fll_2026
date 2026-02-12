@@ -4,13 +4,22 @@ body {
     gap: 2rem;
     padding: 2rem;
     margin: 0 auto;
-    font-family:
-        system-ui,
-        -apple-system,
-        sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--textcolor);
     justify-content: center;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: var(--secundarycolor);
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
 }
 
 article {
