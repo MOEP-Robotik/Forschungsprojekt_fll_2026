@@ -21,8 +21,8 @@
 - [ ] API-Endpunkte dokumentieren
 - [x] Datenbankmodellierung
 - [x] Authentifizierungslogik implementieren
-- [ ] Entscheiden, was in die .csv rein muss
-- [ ] Gucken, ob Namen von DB Spalten o.ä. richtig sind und ob alle gebraucht werden
+- [x] Entscheiden, was in die .csv rein muss
+- [x] Gucken, ob Namen von DB Spalten der Submission und User Tabelle richtig sind und ob alle gebraucht werden
 - [x] Filepath bei der Spericherung von CSV und Bildern überlegen
 - [x] Bilder Upload hinzufügen
 - [x] Funde zum account hinzufügen
