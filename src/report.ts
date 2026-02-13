@@ -121,6 +121,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function sendReport(event: Event) {
     event.preventDefault();
+    const readItInput = document.getElementById(
+        "readItInput",
+    ) as HTMLInputElement;
+    if (!readItInput.checked) {
+        alert(
+            "Die Datenschutzerklärung und die AGB müssen gelesen und akzeptiert werden",
+        );
+        return;
+    }
 
     const dateInput = document.getElementById("date") as HTMLInputElement;
     const lonInput = document.getElementById("lng-input") as HTMLInputElement;
