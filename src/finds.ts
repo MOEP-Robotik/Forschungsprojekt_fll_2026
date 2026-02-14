@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div class="date">${fund.date}</div>
             <div class="sentinfo">Bestätigung: ${fund.sentInfo.confirmation}</div>
             <div class="sentinfo">Meldung: ${fund.sentInfo.lvr}</div>
-        `);//TODO: sentInfo schön darstellen
+        `); //TODO: sentInfo schön darstellen
         marker.on("mouseover", () => {
             marker.openPopup();
         });
@@ -66,7 +66,7 @@ interface Fund {
     material: string;
     coordinate: coordinate;
     date: string;
-    sentInfo: sentInfo; 
+    sentInfo: sentInfo;
     //noch nicht vollständig!!!
 }
 
