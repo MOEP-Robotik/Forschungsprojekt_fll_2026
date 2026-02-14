@@ -38,7 +38,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         marker.bindPopup(`
             <div class="material">${uppermaterial}</div>
             <div class="date">${fund.date}</div>
-        `);
+            <div class="sentinfo">Bestätigung: ${fund.sentInfo.confirmation}</div>
+            <div class="sentinfo">Meldung: ${fund.sentInfo.lvr}</div>
+        `);//TODO: sentInfo schön darstellen
         marker.on("mouseover", () => {
             marker.openPopup();
         });
@@ -55,10 +57,16 @@ interface coordinate {
     lat: number;
 }
 
+interface sentInfo {
+    confirmation: boolean;
+    lvr: boolean;
+}
+
 interface Fund {
     material: string;
     coordinate: coordinate;
     date: string;
+    sentInfo: sentInfo; 
     //noch nicht vollständig!!!
 }
 
@@ -75,6 +83,7 @@ async function getFunde(): Promise<Array<Fund>> {
         const data = await res.json();
 
         if (data.success) {
+            console.log(data);
             return data.data as Array<Fund>;
         } else {
             console.error("Get unsuccessful: ", data);
