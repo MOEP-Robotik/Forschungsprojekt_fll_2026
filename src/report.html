@@ -61,6 +61,7 @@
                 <span style="color: red">*</span></label
             >
             <select name="material" id="material" required>
+                <option value="Unbekannt" class="option-group">Unbekannt</option>
                 <option value="Holz">Holz</option>
                 <option value="Holzkohle">Holzkohle</option>
                 <option value="Glas">Glas</option>
@@ -98,7 +99,7 @@
                 <option value="Textilfaser">Textilfaser</option>
                 <option value="Papier">Papier</option></select
             ><br />
-            <label for="datierung"> Datierung: </label>
+            <label for="datierung">Datierung: </label>
             <select name="datierung" id="datierung">
                 <option value="Unbekannt">Unbekannt</option>
                 <option value="Geologisch">Geologisch</option>
@@ -119,11 +120,19 @@
                 <option value="Spaetmittelalter">Spätmittelalter</option>
                 <option value="Neuzeit">Neuzeit</option>
             </select>
-
+            <p>Extra Details, z.B. Fundumstände oder Form:</p>
+            <input
+                type="text"
+                placeholder="Auf einem Acker, in einem Busch"
+                name="comment"
+                id="comment"
+            />
+            <br/>
+            <br/>
             <div class="dimensions">
-                <strong>Maße des Fundes:</strong>
+                <strong>Maße des Fundes: (in cm)</strong>
                 <!--Hier irgendwie was zu Einheiten hinzufügen-->
-                <p>Länge: <span style="color: red">*</span></p>
+                <p>Länge: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="25cm"
@@ -132,7 +141,7 @@
                     min="0"
                     required
                 />
-                <p>Breite: <span style="color: red">*</span></p>
+                <p>Breite: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="12,5cm"
@@ -141,7 +150,7 @@
                     min="0"
                     required
                 />
-                <p>Höhe: <span style="color: red">*</span></p>
+                <p>Höhe: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="6,25cm"
@@ -150,7 +159,7 @@
                     min="0"
                     required
                 />
-                <p>Gewicht: <span style="color: red">*</span></p>
+                <p>Gewicht: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="50kg"
@@ -161,7 +170,7 @@
                 />
             </div>
 
-            <p>Fotos der/des Fundstücke/s: <span style="color: red">*</span></p>
+            <p>Fotos der/des Fundstücke/s: <span class="required-marker">*</span></p>
             <input
                 type="file"
                 id="image"
