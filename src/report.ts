@@ -141,9 +141,7 @@ async function sendReport(event: Event) {
     const datierungsInput = document.getElementById(
         "datierung",
     ) as HTMLSelectElement;
-    const commentInput = document.getElementById(
-        "comment",
-    ) as HTMLInputElement;
+    const commentInput = document.getElementById("comment") as HTMLInputElement;
     const lengthInput = document.getElementById("length") as HTMLInputElement;
     const widthInput = document.getElementById("width") as HTMLInputElement;
     const heightInput = document.getElementById("height") as HTMLInputElement;
