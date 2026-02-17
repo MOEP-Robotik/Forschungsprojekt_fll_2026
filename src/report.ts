@@ -121,6 +121,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function sendReport(event: Event) {
     event.preventDefault();
+    const readItInput = document.getElementById(
+        "readItInput",
+    ) as HTMLInputElement;
+    if (!readItInput.checked) {
+        alert(
+            "Die Datenschutzerklärung und die AGB müssen gelesen und akzeptiert werden",
+        );
+        return;
+    }
 
     const dateInput = document.getElementById("date") as HTMLInputElement;
     const lonInput = document.getElementById("lng-input") as HTMLInputElement;
@@ -129,6 +138,10 @@ async function sendReport(event: Event) {
     const materialInput = document.getElementById(
         "material",
     ) as HTMLSelectElement;
+    const datierungsInput = document.getElementById(
+        "datierung",
+    ) as HTMLSelectElement;
+    const commentInput = document.getElementById("comment") as HTMLInputElement;
     const lengthInput = document.getElementById("length") as HTMLInputElement;
     const widthInput = document.getElementById("width") as HTMLInputElement;
     const heightInput = document.getElementById("height") as HTMLInputElement;
@@ -201,6 +214,8 @@ async function sendReport(event: Event) {
 
     formData.append("size", JSON.stringify(size));
     formData.append("material", materialInput.value);
+    formData.append("datierung", datierungsInput.value);
+    formData.append("comment", commentInput.value);
     if (dateInput.value) {
         formData.append("date", dateInput.value);
     }

@@ -61,24 +61,100 @@
                 <span style="color: red">*</span></label
             >
             <select name="material" id="material" required>
-                <option value="stein">Stein</option>
-                <option value="keramik">Keramik</option>
-                <option value="metall">Metall</option>
-                <option value="holz">Holz</option>
-                <option value="glas">Glas</option>
+                <option value="Unbekannt">Unbekannt</option>
+                <option value="Holz">Holz</option>
+                <option value="Holzkohle">Holzkohle</option>
+                <option value="Glas (Material)">Glas</option>
 
-                <option value="textil">Textil</option>
-                <option value="leder">Leder</option>
+                <option value="Gestein" class="option-group">Gestein</option>
+                <option value="Feuerstein">Feuerstein</option>
+                <option value="Kunststein">Kunststein</option>
+                <option value="Fossil">Fossil</option>
 
-                <option value="knochen">Knochen</option>
-                <option value="geweih">Geweih</option>
-                <option value="other">etwas anderes</option>
+                <option value="Metall" class="option-group">Metall</option>
+                <option value="Bronze (Metall)">Bronze</option>
+                <option value="Eisen (Metall)">Eisen</option>
+                <option value="Blei (Metall)">Blei</option>
+                <option value="Gold (Metall)">Gold</option>
+                <option value="Silber (Metall)">Silber</option>
+
+                <option value="Keramik (Material)" class="option-group">
+                    Keramik
+                </option>
+                <option value="Irdenware (Material)">Irdenware</option>
+                <option value="Ziegel (Material)">Ziegel</option>
+                <option value="Steinzeug (Material)">Steinzeug</option>
+                <option value="Porzellan (Material)">Porzellan</option>
+
+                <option value="Knochen (Material)" class="option-group">
+                    Knochen
+                </option>
+                <option value="Geweih (Material)">Geweih</option>
+                <option value="Zahn">Zahn</option>
+
+                <option value="Kunststoff" class="option-group">
+                    Kunststoff
+                </option>
+                <option value="Textilfaser">Textilfaser</option>
+                <option value="Papier (Material)">Papier</option></select
+            ><br />
+            <label for="datierung">Datierung: </label>
+            <select name="datierung" id="datierung">
+                <option value="Unbekannt">Unbekannt</option>
+                <option value="Geologisch">
+                    Geologisch (vor 2,6 Mio. v. Chr.)
+                </option>
+                <option value="Urgeschichte">
+                    Urgeschichte (2,6 Mio. - 4000 v. Chr.)
+                </option>
+                <option value="Steinzeit">
+                    Steinzeit (2,6 Mio. - 2200 v. Chr.)
+                </option>
+                <option value="Palaeolithikum">
+                    Paläolithikum (2,6 Mio. - 9600 v. Chr.)
+                </option>
+                <option value="Mesolithikum">
+                    Mesolithikum (9600 - 5500 v. Chr.)
+                </option>
+                <option value="Neolithikum">
+                    Neolithikum (5500 - 2200 v. Chr.)
+                </option>
+                <option value="Metallzeit">
+                    Metallzeit (2200 - 800 v. Chr.)
+                </option>
+                <option value="Bronzezeit">
+                    Bronzezeit (2200 - 800 v. Chr.)
+                </option>
+                <option value="Eisenzeit">Eisenzeit (800 v. Chr. - 0)</option>
+                <option value="Roemische Kaiserzeit">
+                    Römische Kaiserzeit (0 - 375 n. Chr.)
+                </option>
+                <option value="Mittelalter">
+                    Mittelalter (500 - 1500 n. Chr.)
+                </option>
+                <option value="Fruehmittelalter">
+                    Frühmittelalter (500 - 1050 n. Chr.)
+                </option>
+                <option value="Hochmittelalter">
+                    Hochmittelalter (1050 - 1250 n. Chr.)
+                </option>
+                <option value="Spaetmittelalter">
+                    Spätmittelalter (1250 - 1500 n. Chr.)
+                </option>
+                <option value="Neuzeit">Neuzeit (1500 n. Chr. - heute)</option>
             </select>
-
+            <p>Extra Details, z.B. Fundumstände oder Form:</p>
+            <input
+                type="text"
+                placeholder="Auf einem Acker, in einem Busch"
+                name="comment"
+                id="comment"
+            />
+            <br />
+            <br />
             <div class="dimensions">
                 <strong>Maße des Fundes:</strong>
-                <!--Hier irgendwie was zu Einheiten hinzufügen-->
-                <p>Länge: <span style="color: red">*</span></p>
+                <p>Länge: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="25cm"
@@ -87,7 +163,7 @@
                     min="0"
                     required
                 />
-                <p>Breite: <span style="color: red">*</span></p>
+                <p>Breite: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="12,5cm"
@@ -96,7 +172,7 @@
                     min="0"
                     required
                 />
-                <p>Höhe: <span style="color: red">*</span></p>
+                <p>Höhe: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="6,25cm"
@@ -105,7 +181,7 @@
                     min="0"
                     required
                 />
-                <p>Gewicht: <span style="color: red">*</span></p>
+                <p>Gewicht: <span class="required-marker">*</span></p>
                 <input
                     type="number"
                     placeholder="50kg"
@@ -116,7 +192,10 @@
                 />
             </div>
 
-            <p>Fotos der/des Fundstücke/s: <span style="color: red">*</span></p>
+            <p>
+                Fotos der/des Fundstücke/s:
+                <span class="required-marker">*</span>
+            </p>
             <input
                 type="file"
                 id="image"
@@ -152,6 +231,14 @@
             </div>
             <div id="map"></div>
             <br />
+            <label
+                ><input type="checkbox" id="readItInput" />Ich habe die
+                <a href="/src/datenschutz.html" target="_blank"
+                    >Datenschutzerklärung</a
+                >
+                und die <a href="/src/agb.html" target="_blank">AGB</a> gelesen
+                und akzeptiere diese.</label
+            >
             <button type="submit">Senden</button>
         </form>
         <script type="module" src="/src/report.ts"></script>

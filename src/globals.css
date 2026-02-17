@@ -1,12 +1,14 @@
 :root {
     --maincolor: rgb(255, 255, 255);
     --textcolor: rgb(0, 0, 0);
+    --secondarycolor: rgb(223, 198, 155);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --maincolor: rgb(0, 0, 0);
         --textcolor: rgb(255, 255, 255);
+        --secondarycolor: rgb(223, 198, 155);
     }
 }
 
@@ -77,8 +79,15 @@ button:hover {
 }
 
 .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
     text-decoration: none;
-    color: inherit;
+    color: var(--secondarycolor);
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
 }
 
 .required-marker {

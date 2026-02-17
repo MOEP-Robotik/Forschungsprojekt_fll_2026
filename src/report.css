@@ -12,3 +12,9 @@
     border: 1px solid var(--textcolor);
     border-radius: 5px;
 }
+
+.option-group {
+    font-weight: bold;
+    font-style: italic;
+    padding-left: 0;
+}
