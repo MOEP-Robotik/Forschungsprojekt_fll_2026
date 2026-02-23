@@ -258,7 +258,7 @@ async function sendReport(event: Event) {
 
         const form = document.getElementById("report-form") as HTMLFormElement;
         if (form) {
-            //form.reset();
+            window.location.href = "/src/finds.html";
         }
     } catch (error) {
         console.error("Error sending report:", error);
