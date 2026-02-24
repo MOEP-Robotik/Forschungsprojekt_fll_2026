@@ -83,7 +83,6 @@ async function getFunde(): Promise<Array<Fund>> {
         const data = await res.json();
 
         if (data.success) {
-            console.log(data);
             return data.data as Array<Fund>;
         } else {
             console.error("Get unsuccessful: ", data);
