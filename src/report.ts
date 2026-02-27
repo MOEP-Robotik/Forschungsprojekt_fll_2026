@@ -58,14 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function successNav(position: GeolocationPosition) {
         latInput.value = String(position.coords.latitude);
         lonInput.value = String(position.coords.longitude);
-    } 
+    }
     if (my_position) {
         my_position.addEventListener("click", () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(successNav);
-
             }
-        })
+        });
     }
 
     map.on("click", function (e: L.LeafletMouseEvent) {
