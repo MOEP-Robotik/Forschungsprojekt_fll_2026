@@ -1,15 +1,18 @@
 :root {
-    --maincolor: rgb(255, 255, 255);
-    --textcolor: rgb(0, 0, 0);
-    --secondarycolor: rgb(223, 198, 155);
+    --maincolor: #FBFCF8;
+    --textcolor: #191411;
+    --secondarycolor: #191411;
 }
-
 @media (prefers-color-scheme: dark) {
     :root {
-        --maincolor: rgb(0, 0, 0);
-        --textcolor: rgb(255, 255, 255);
-        --secondarycolor: rgb(223, 198, 155);
+        --maincolor: #191411;
+        --textcolor: #FBFCF8;
+        --secondarycolor: #FBFCF8;
     }
+}
+
+* {
+    font-family: Baskerville Old Face;
 }
 
 body {
