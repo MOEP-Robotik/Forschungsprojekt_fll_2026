@@ -103,3 +103,8 @@ button:hover {
     border-top: 1px solid #ccc;
     margin: 1em;
 }
+
+.internal-link {
+    color: rgb(255, 98, 0);
+    text-decoration: none;
+}
