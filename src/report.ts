@@ -71,7 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(successNav, errorNav);
             } else {
-                console.error("Geolocation is not supported by this browser or your device / you denied it.");
+                console.error(
+                    "Geolocation is not supported by this browser or your device / you denied it.",
+                );
             }
         });
     }
