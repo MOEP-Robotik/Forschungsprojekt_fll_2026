@@ -54,6 +54,19 @@ document.addEventListener("DOMContentLoaded", () => {
             latInput.value = lat.toFixed(6);
         }
     }
+    const my_position = document.getElementById("my_position");
+    function successNav(position: GeolocationPosition) {
+        latInput.value = String(position.coords.latitude);
+        lonInput.value = String(position.coords.longitude);
+    } 
+    if (my_position) {
+        my_position.addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(successNav);
+
+            }
+        })
+    }
 
     map.on("click", function (e: L.LeafletMouseEvent) {
         updateMarker(e.latlng.lng, e.latlng.lat, true);
