@@ -1,12 +1,12 @@
 /* Ich weiß es ist unordentlich */
 :root {
-    --maincolor: #FBFCF8;
+    --maincolor: #fbfcf8;
     --textcolor: #191411;
 }
 @media (prefers-color-scheme: dark) {
     :root {
         --maincolor: #191411;
-        --textcolor: #FBFCF8;
+        --textcolor: #fbfcf8;
     }
 }
 
