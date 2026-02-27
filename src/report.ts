@@ -60,14 +60,21 @@ document.addEventListener("DOMContentLoaded", () => {
         lonInput.value = String(position.coords.longitude);
         updateMarker(position.coords.longitude, position.coords.latitude);
     }
+    function errorNav(error: GeolocationPositionError) {
+        console.error("Error getting geolocation:", error);
+        alert(
+            "Fehler beim Abrufen der Geolocation. Bitte erlaube den Zugriff auf deinen Standort oder gib die Koordinaten manuell ein.",
+        );
+    }
     if (my_position) {
         my_position.addEventListener("click", () => {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(successNav);
+                navigator.geolocation.getCurrentPosition(successNav, errorNav);
+            } else {
+                console.error("Geolocation is not supported by this browser or your device / you denied it.");
             }
         });
     }
-
     map.on("click", function (e: L.LeafletMouseEvent) {
         updateMarker(e.latlng.lng, e.latlng.lat, true);
     });
